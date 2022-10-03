@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.DataModel\\Approval_Api.DataModel..csproj": {}
+  },
+  "projects": {
+    "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.DataModel\\Approval_Api.DataModel..csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.DataModel\\Approval_Api.DataModel..csproj",
+        "projectName": "Approval_Api.DataModel.",
+        "projectPath": "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.DataModel\\Approval_Api.DataModel..csproj",
+        "packagesPath": "C:\\Users\\Satyajit.Das\\.nuget\\packages\\",
+        "outputPath": "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.DataModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Satyajit.Das\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.13, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

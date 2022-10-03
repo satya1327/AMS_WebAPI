@@ -1,0 +1,12 @@
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\bin\Debug\net5.0\Approval_Api.ServiceModel.deps.json
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\bin\Debug\net5.0\Approval_Api.ServiceModel.dll
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\bin\Debug\net5.0\Approval_Api.ServiceModel.pdb
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.csproj.AssemblyReference.cache
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.GeneratedMSBuildEditorConfig.editorconfig
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.AssemblyInfoInputs.cache
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.AssemblyInfo.cs
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.csproj.CoreCompileInputs.cache
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.dll
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\refint\Approval_Api.ServiceModel.dll
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.pdb
+C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\ref\Approval_Api.ServiceModel.dll

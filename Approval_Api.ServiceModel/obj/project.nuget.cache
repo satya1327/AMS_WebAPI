@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "I2jz4GMXId8uyxo3JMREgsu9KHXoRHUSostxjvzIj7YkLMuRGKHQG2+x9ETJZHhClli0oLf8JZuoFO97UUMagA==",
+  "success": true,
+  "projectFilePath": "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.ServiceModel\\Approval_Api.ServiceModel.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Satyajit.Das\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\Satyajit.Das\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\Satyajit.Das\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Satyajit.Das\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Satyajit.Das\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\Satyajit.Das\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\Satyajit.Das\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
