@@ -9,6 +9,8 @@ namespace Approval_Api.Services.Interface
     public interface IRequestServices
 {
         Task<List<RequestDetailsDTO>> GetAllRequest();
+        Task<List<RequestDetailsDTO>> GetAllRequestHistory();
+        Task<List<RequestDetailsDTO>> GetRequestByUserId(int id);
         Task<RequestDetailsDTO> GetRequestById(int id);
        Task<int> AddRequest(Request request);
        Task<int> ActionRequest(Request request, int id);

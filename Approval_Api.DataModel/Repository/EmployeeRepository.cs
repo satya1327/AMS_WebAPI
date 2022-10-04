@@ -85,7 +85,7 @@ namespace Approval_Api.DataModel_.Repository
             var data = userList.Where(x => x.UserId == id).FirstOrDefault();
             return data;
         }
-
+      
         public int UpdateUser(Employee emp, int id)
         {
             var data=_approval_data.Employees.Find(id);

@@ -1,13 +1,14 @@
 ﻿using Approval_Api.DataModel_.entities;
+using System.Threading.Tasks;
 
 namespace Approval_Api.Services
 {
     public interface IAuthenticationServices
     {
-        Employee AuthenticateUser(Employee loginCredentials);
-        int RegisterUser(Employee userData);
-        bool CheckUserAvailabity(string userName);
+       Task<Employee> AuthenticateUser(Employee loginCredentials);
+       
+        Task<bool> CheckUserAvailabity(string userName);
 
-        bool isUserExists(int userId);
+        Task<bool> isUserExists(int userId);
     }
 }

@@ -10,3 +10,15 @@ C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\
 C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\refint\Approval_Api.ServiceModel.dll
 C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.pdb
 C:\SD-DT2-Approval_Management_System-API\Approval_Api\Approval_Api.ServiceModel\obj\Debug\net5.0\ref\Approval_Api.ServiceModel.dll
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\bin\Debug\net5.0\Approval_Api.ServiceModel.deps.json
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\bin\Debug\net5.0\Approval_Api.ServiceModel.dll
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\bin\Debug\net5.0\Approval_Api.ServiceModel.pdb
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.csproj.AssemblyReference.cache
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.AssemblyInfoInputs.cache
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.AssemblyInfo.cs
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.csproj.CoreCompileInputs.cache
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.dll
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\obj\Debug\net5.0\refint\Approval_Api.ServiceModel.dll
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\obj\Debug\net5.0\Approval_Api.ServiceModel.pdb
+C:\Users\Satyajit.Das\OneDrive\Secure_AMS_API\Approval_Api.ServiceModel\obj\Debug\net5.0\ref\Approval_Api.ServiceModel.dll

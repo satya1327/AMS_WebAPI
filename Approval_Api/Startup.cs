@@ -1,6 +1,7 @@
 using Approval_Api.DataModel.Repository;
 using Approval_Api.DataModel_.entities;
 using Approval_Api.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,10 +11,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Approval_Api
@@ -40,9 +44,39 @@ namespace Approval_Api
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Approval_Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Approval_Api v1", Version = "v1" });
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Description = "Standard JWT Authorization header. Example: \"bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
+                services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
 
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
+            });
+            services.AddAuthorization(config =>
+            {
+                config.AddPolicy(UserRoles.Admin, Policies.AdminPolicy());
+                config.AddPolicy(UserRoles.User, Policies.UserPolicy());
+            });
+
+            //services.AddAuthorization(config =>
+            //{
+            //    config.AddPolicy(UserRoles.Admin, Policies.AdminPolicy());
+            //    config.AddPolicy(UserRoles.User, Policies.UserPolicy());
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

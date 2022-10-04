@@ -1,6 +1,7 @@
 ﻿
 using Approval_Api.DataModel.Repository.Interface;
 using Approval_Api.DataModel_.entities;
+using Approval_Api.helpers;
 using Approval_Api.ServiceModel.DTO.Request;
 using Approval_Api.ServiceModel.DTO.Response;
 using MailKit;
@@ -12,7 +13,9 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
- 
+
+
+
 
 
 
@@ -21,6 +24,7 @@ namespace Approval_Api.DataModel.Repository
     public class RequestRepository : IRequestRepository
     {
         private readonly Approval_DatabaseContext _databaseContext;
+         
         
         public RequestRepository(Approval_DatabaseContext databaseContext)
         {
@@ -63,6 +67,34 @@ namespace Approval_Api.DataModel.Repository
 
     }
 
+        public async Task<List<RequestDetailsDTO>> GetAllRequestHistory()
+        {
+            var userList = (from u in _databaseContext.Employees
+                            join r in _databaseContext.Requests on u.UserId equals r.UserId
+                            join s in _databaseContext.Statuses on r.StatusId equals s.StatusId
+
+                            select new RequestDetailsDTO
+                            {
+
+                                ReqId = r.ReqId,
+                                first_name = u.FirstName,
+                                last_name = u.LastName,
+                                Purpose = r.Purpose,
+                                Description = r.Description,
+                                AdvAmount = r.AdvAmount,
+                                EstimatedAmount = r.EstimatedAmount,
+                                Date = r.Date,
+                                statusName = s.StatusName,
+                                Comments = r.Comments,
+                             
+                            }).ToListAsync();
+            return await userList;
+
+
+
+
+        }
+
         public async Task<RequestDetailsDTO> GetRequestById(int id)
         {
             var userList =await  (from u in _databaseContext.Employees
@@ -93,6 +125,36 @@ namespace Approval_Api.DataModel.Repository
             var data = userList.Where(x => x.ReqId == id).FirstOrDefault();
             return  data;
         }
+
+        public async Task<List<RequestDetailsDTO>> GetRequestByUserId(int id)
+        {
+            var userList = await (from u in _databaseContext.Employees
+                                  join r in _databaseContext.Requests on u.UserId equals r.UserId
+                                  join s in _databaseContext.Statuses on r.StatusId equals s.StatusId
+
+
+                                  select new RequestDetailsDTO
+                                  {
+
+                                      ReqId = r.ReqId,
+                                      first_name = u.FirstName,
+                                      last_name = u.LastName,
+                                      Purpose = r.Purpose,
+                                      Description = r.Description,
+                                      AdvAmount = r.AdvAmount,
+                                      EstimatedAmount = r.EstimatedAmount,
+                                      Date = r.Date,
+                                      statusName = s.StatusName,
+                                      Comments = r.Comments,
+                                      UserId = u.UserId,
+                                     
+
+
+
+                                  }).Where(x => x.UserId == id).ToListAsync();
+           
+            return userList;
+        }
         public  async Task< int> AddRequest(Request request)
         {
             if (request == null)
@@ -103,12 +165,14 @@ namespace Approval_Api.DataModel.Repository
             {
                 request.StatusId = 1;
 
-                 _databaseContext.Requests.Add(request);
-                var employeeEmail = _databaseContext.Employees.Where(e => e.UserId == request.UserId).Select(s => s.Email);
-                var managerEmail = _databaseContext.Employees.Where(m => m.UserId == request.ManagerId).Select(x => x.Email);
-                
+                  _databaseContext.Requests.Add(request);
+                var employeeEmail =  _databaseContext.Employees.Where(e => e.UserId == request.UserId).Select(s => s.Email).FirstOrDefault();
+                var managerEmail =  _databaseContext.Employees.Where(m => m.UserId == request.ManagerId).Select(x => x.Email).FirstOrDefault();
+                string sender = Convert.ToString(employeeEmail);
+                string reciever = Convert.ToString(managerEmail);
+                int Status = Convert.ToInt32(request.StatusId);
 
-
+                 EmailServices.smtpMailer(Status, sender, reciever);
 
 
                 await _databaseContext.SaveChangesAsync();
@@ -308,5 +372,7 @@ namespace Approval_Api.DataModel.Repository
             var data = _databaseContext.Requests.Select(x => x.ReqId).Count();
             return  data;
         }
+
+        
     }
 }

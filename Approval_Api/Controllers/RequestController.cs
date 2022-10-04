@@ -28,6 +28,20 @@ namespace Approval_Api.Controllers
             _mailService = mailService;
         }
        
+        [HttpGet("GetAllRequestHistory")]
+        public async Task<ActionResult<List<RequestDetailsDTO>>> GetAllRequestHistory()
+        {
+            var data = await _services.GetAllRequestHistory();
+            if (data == null)
+                return NotFound("No Data Found");
+            else
+            {
+                var response = _mapper.Map<List<RequestDetailsDTO>>(data);
+                return Ok(response);
+            }
+        }
+
+
         [HttpGet("GetAllRequest")]
         public async Task<ActionResult<List<RequestDetailsDTO>>> GetAllRequest()
         {
@@ -50,6 +64,19 @@ namespace Approval_Api.Controllers
             {
                
                 var response = _mapper.Map<RequestDetailsDTO>(data);
+                return Ok(response);
+            }
+        }
+        [HttpGet("GetRequestByUserId")]
+        public async Task<ActionResult<List<RequestDetailsDTO>>> GetRequestByUserId(int id)
+        {
+            var data = await _services.GetRequestByUserId(id);
+            if (data == null)
+                return NotFound("please specify valid id");
+            else
+            {
+
+                var response = _mapper.Map<List<RequestDetailsDTO>>(data);
                 return Ok(response);
             }
         }
@@ -80,7 +107,7 @@ namespace Approval_Api.Controllers
         public async Task<ActionResult<Request>>DeleteRequest(int id)
         {
             var data = await _services.DeleteRequest(id);
-            if (data == null)
+            if (data == 0)
                 return BadRequest("please enter valid id");
             else
                 return Ok("successfully deleted");
@@ -105,6 +132,8 @@ namespace Approval_Api.Controllers
             }
 
         }
+
+       
         //[HttpPut("RejectRequest")]
 
         //public async Task<ActionResult<int>> RejectRequest(RequestDataDTO request, int id)

@@ -1,4 +1,5 @@
 ﻿using Approval_Api.DataModel_.entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,10 @@ namespace Approval_Api.DataModel_.Repository
             _databaseContext = databaseContext;
         }
 
-        public Employee AuthenticateUser(Employee loginCredentials)
+        public async Task<Employee> AuthenticateUser(Employee loginCredentials)
         {
             Employee userMaster = new Employee();
-            var userDetails = _databaseContext.Employees.FirstOrDefault(u => u.UserName == loginCredentials.UserName
+            var userDetails = _databaseContext.Employees.FirstOrDefault(u => u.Email == loginCredentials.Email
 
             && u.Password == loginCredentials.Password);
             if (userDetails != null)
@@ -39,9 +40,9 @@ namespace Approval_Api.DataModel_.Repository
             }
         }
 
-        public bool CheckUserAvailabity(string userName)
+        public async Task<bool> CheckUserAvailabity(string email)
         {
-            string user = _databaseContext.Employees.FirstOrDefault(x => x.UserName == userName)?.ToString();
+            string user = _databaseContext.Employees.FirstOrDefault(x => x.Email == email)?.ToString();
             if (user != null)
             {
                 return true;
@@ -50,7 +51,7 @@ namespace Approval_Api.DataModel_.Repository
                 return false;
         }
 
-        public bool isUserExists(int userId)
+        public async  Task<bool> isUserExists(int userId)
         {
             string user = _databaseContext.Employees.FirstOrDefault(x => x.UserId == userId)?.ToString();
             if (user != null)
@@ -64,22 +65,7 @@ namespace Approval_Api.DataModel_.Repository
             }
         }
 
-        public int RegisterUser(Employee userData)
-        {
-            try
-            {
-                userData.RoleId = 1;
-                _databaseContext.Employees.Add(userData);
-                _databaseContext.SaveChanges();
-                return 1;
-            }
-
-            catch
-            {
-                throw;
-            }
-        }
-
+      
         
     }
 }

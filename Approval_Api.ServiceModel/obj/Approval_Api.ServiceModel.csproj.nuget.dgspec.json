@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.ServiceModel\\Approval_Api.ServiceModel.csproj": {}
+    "C:\\Users\\Satyajit.Das\\OneDrive\\Secure_AMS_API\\Approval_Api.ServiceModel\\Approval_Api.ServiceModel.csproj": {}
   },
   "projects": {
-    "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.ServiceModel\\Approval_Api.ServiceModel.csproj": {
+    "C:\\Users\\Satyajit.Das\\OneDrive\\Secure_AMS_API\\Approval_Api.ServiceModel\\Approval_Api.ServiceModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.ServiceModel\\Approval_Api.ServiceModel.csproj",
+        "projectUniqueName": "C:\\Users\\Satyajit.Das\\OneDrive\\Secure_AMS_API\\Approval_Api.ServiceModel\\Approval_Api.ServiceModel.csproj",
         "projectName": "Approval_Api.ServiceModel",
-        "projectPath": "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.ServiceModel\\Approval_Api.ServiceModel.csproj",
+        "projectPath": "C:\\Users\\Satyajit.Das\\OneDrive\\Secure_AMS_API\\Approval_Api.ServiceModel\\Approval_Api.ServiceModel.csproj",
         "packagesPath": "C:\\Users\\Satyajit.Das\\.nuget\\packages\\",
-        "outputPath": "C:\\SD-DT2-Approval_Management_System-API\\Approval_Api\\Approval_Api.ServiceModel\\obj\\",
+        "outputPath": "C:\\Users\\Satyajit.Das\\OneDrive\\Secure_AMS_API\\Approval_Api.ServiceModel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -47,6 +47,18 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
+            },
+            "JWT": {
+              "target": "Package",
+              "version": "[10.0.0-beta9, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.13, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             }
           },
           "imports": [

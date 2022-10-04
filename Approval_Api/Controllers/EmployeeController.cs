@@ -3,6 +3,7 @@ using Approval_Api.ServiceModel.DTO.Request;
 using Approval_Api.ServiceModel.DTO.Response;
 using Approval_Api.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace Approval_Api.Controllers
             _mapper=mapper;
         }
         [HttpGet("GetAllUser")]
+        [Authorize(Policy = UserRoles.Admin)]
         public async Task<ActionResult<List<UserViewModelDTO>>> GetAllUser()
         {
             var data = _userService.GetAllUsers().ToList();
@@ -44,6 +46,7 @@ namespace Approval_Api.Controllers
                 return Ok(data);
         }
         [HttpPost("AddUser")]
+        [Authorize(Policy = UserRoles.Admin)]
         public async Task<ActionResult<UserRequestDTO>>AddUser(UserRequestDTO user)
         {
             var response = _mapper.Map<Employee>(user);
@@ -58,6 +61,7 @@ namespace Approval_Api.Controllers
         }
 
         [HttpPatch("UpdateRequest")]
+        [Authorize(Policy = UserRoles.Admin)]
         public async Task<ActionResult<UserRequestDTO>>UpdateUser(UserRequestDTO emp,int id)
         {
             var response = _mapper.Map<Employee>(emp);

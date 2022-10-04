@@ -13,6 +13,7 @@ namespace Approval_Api.Services
     public class RequestServices : IRequestServices
     {
         private readonly IRequestRepository _requestRepository;
+        
         public RequestServices(IRequestRepository requestRepository)
         {
             _requestRepository = requestRepository;
@@ -21,6 +22,7 @@ namespace Approval_Api.Services
         public async Task< int> AddRequest(Request request)
         {
             return await _requestRepository.AddRequest(request);
+            
         }
 
         public async Task<int> DeleteRequest(int id)
@@ -65,6 +67,16 @@ namespace Approval_Api.Services
         public async Task<int> ActionRequest(Request request, int id)
         {
             return await _requestRepository.ActionRequest(request, id);
+        }
+
+        public Task<List<RequestDetailsDTO>> GetAllRequestHistory()
+        {
+            return _requestRepository.GetAllRequestHistory();
+        }
+
+        public Task<List<RequestDetailsDTO>> GetRequestByUserId(int id)
+        {
+            return _requestRepository.GetRequestByUserId(id);
         }
 
         //public int ApprovedRequest(Request request,int id)

@@ -22,6 +22,7 @@ namespace Approval_Api.ServiceModel.DTO.Response
         public DateTime? Date { get; set; }
         public string statusName { get; set; }
         public string Comments { get; set; }
+        public string approver { get; set; }
     
     }
 }

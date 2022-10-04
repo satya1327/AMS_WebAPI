@@ -1,5 +1,6 @@
 ﻿using Approval_Api.DataModel_.entities;
 using Approval_Api.DataModel_.Repository;
+using System.Threading.Tasks;
 
 namespace Approval_Api.Services
 {
@@ -11,24 +12,21 @@ namespace Approval_Api.Services
             _authenticationRepository = authenticationRepository;
         }
 
-        public Employee AuthenticateUser(Employee loginCredentials)
+        public async Task<Employee> AuthenticateUser(Employee loginCredentials)
         {
-           return _authenticationRepository.AuthenticateUser(loginCredentials);
+           return await _authenticationRepository.AuthenticateUser(loginCredentials);
         }
 
-        public bool CheckUserAvailabity(string userName)
+        public async Task< bool> CheckUserAvailabity(string userName)
         {
-            return _authenticationRepository.CheckUserAvailabity(userName);
+            return await _authenticationRepository.CheckUserAvailabity(userName);
         }
 
-        public bool isUserExists(int userId)
+        public async Task<bool> isUserExists(int userId)
         {
-            return _authenticationRepository.isUserExists(userId);
+            return await _authenticationRepository.isUserExists(userId);
         }
 
-        public int RegisterUser(Employee userData)
-        {
-            return _authenticationRepository.RegisterUser(userData);
-        }
+     
     }
 }
