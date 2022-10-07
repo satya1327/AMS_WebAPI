@@ -1,4 +1,5 @@
 ﻿using Approval_Api.DataModel_.entities;
+using Approval_Api.ServiceModel.DTO.Request;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Approval_Api.DataModel_.Repository
             _databaseContext = databaseContext;
         }
 
-        public async Task<Employee> AuthenticateUser(Employee loginCredentials)
+        public UserRequestDTO AuthenticateUser(UserRequestDTO loginCredentials)
         {
             Employee userMaster = new Employee();
             var userDetails = _databaseContext.Employees.FirstOrDefault(u => u.Email == loginCredentials.Email
@@ -24,21 +25,25 @@ namespace Approval_Api.DataModel_.Repository
             && u.Password == loginCredentials.Password);
             if (userDetails != null)
             {
-                var emp = new Employee()
+                var user = new UserRequestDTO()
                 {
-                    UserName = userDetails.UserName,
+                    Email = userDetails.Email,
                     UserId = userDetails.UserId,
-                    RoleId = userDetails.RoleId
+                   
+                
+                    
                 };
 
-                return emp;
+                return user;
             }
 
             else
             {
-                return userDetails;
+                return null;
             }
         }
+
+
 
         public async Task<bool> CheckUserAvailabity(string email)
         {

@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Approval_Api.ServiceModel\Approval_Api.ServiceModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

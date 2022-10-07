@@ -14,7 +14,7 @@ namespace Approval_Api.DataModel.Repository.Interface
 {
         Task<List<RequestDetailsDTO>> GetAllRequest();
         Task<List<RequestDetailsDTO>> GetAllRequestHistory();
-        Task<List<RequestDetailsDTO>> GetRequestByUserId(int id); 
+        List<RequestDetailsDTO> GetRequestByManagerId(int id); 
         Task<RequestDetailsDTO> GetRequestById(int id);
         Task<int> AddRequest(Request request);
         Task<int> ActionRequest(Request request, int id);
@@ -25,6 +25,8 @@ namespace Approval_Api.DataModel.Repository.Interface
         int GetTotalRequest();
        List<RequestDataDTO> GetTotalApprovedRequest();
         List<RequestDataDTO> GetTotalRejectedRequest();
+        int GetApproveRequest();
+        int GetRejectRequest();
 
     }
 }

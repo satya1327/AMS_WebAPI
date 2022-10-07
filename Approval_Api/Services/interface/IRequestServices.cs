@@ -10,7 +10,7 @@ namespace Approval_Api.Services.Interface
 {
         Task<List<RequestDetailsDTO>> GetAllRequest();
         Task<List<RequestDetailsDTO>> GetAllRequestHistory();
-        Task<List<RequestDetailsDTO>> GetRequestByUserId(int id);
+        List<RequestDetailsDTO> GetRequestByManagerId(int id);
         Task<RequestDetailsDTO> GetRequestById(int id);
        Task<int> AddRequest(Request request);
        Task<int> ActionRequest(Request request, int id);
@@ -19,7 +19,9 @@ namespace Approval_Api.Services.Interface
         Task<int> UpdateRequest(Request request,int id);
 
         int GetTotalRequest();
-       List<RequestDataDTO> GetTotalApprovedRequest();
+        int GetApproveRequest();
+        int GetRejectRequest();
+        List<RequestDataDTO> GetTotalApprovedRequest();
        List<RequestDataDTO> GetTotalRejectedRequest();
     }
 }

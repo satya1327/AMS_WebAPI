@@ -14,6 +14,7 @@ using Approval_Api.Services.Interface;
 using Approval_Api.Mapper;
 using Approval_Api.DataModel_.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Approval_Api.ServiceModel.DTO.Request;
 
 namespace Approval_Api.Extensions
 {
@@ -25,9 +26,11 @@ namespace Approval_Api.Extensions
             services.AddScoped<IRequestServices, RequestServices>();
             services.AddScoped<IEmployeeRepository,EmployeeRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IFileUploadRepository, FileUploadRepository>();
+            services.AddScoped<IFileUploadServices, FileUploadServices>();
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<IAuthenticationServices, AuthenticationServices>();
-            services.AddScoped<ITokenServices, TokenServices>();
+           
             services.AddScoped<MailService>();
             services.AddAutoMapper(typeof(ProfileMapper));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -41,11 +44,11 @@ namespace Approval_Api.Extensions
                    ValidateAudience = false
 
                });
-            services.AddAuthorization(config =>
-            {
-                config.AddPolicy(UserRoles.Admin, Policies.AdminPolicy());
-                config.AddPolicy(UserRoles.User, Policies.UserPolicy());
-            });
+            //services.AddAuthorization(config =>
+            //{
+            //    config.AddPolicy(UserRoles.Admin, Policies.AdminPolicy());
+            //    config.AddPolicy(UserRoles.User, Policies.UserPolicy());
+            //});
         }
     }
 }

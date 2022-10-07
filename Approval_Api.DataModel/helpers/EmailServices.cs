@@ -10,7 +10,7 @@ namespace Approval_Api.helpers
     public class EmailServices
     {
 
-        public static void smtpMailer(int status, string toMailid, string fromMailId)
+        public static void smtpMailer(int status, string toMailid, string fromMailId,string comments)
         {
 
             var subject = "";
@@ -27,19 +27,19 @@ namespace Approval_Api.helpers
             {
                 subject = "Your Request is Rejected";
             }
-            //string content;
-            //if (status == 1)
-            //{
-            //    content = "Approval request for id : " + requestId;
-            //}
-            //else if (status == 2)
-            //{
-            //    content = "your request is approved with id : " + requestId;
-            //}
-            //else
-            //{
-            //    content = $"your requset {requestId} is  rejected due to {Comments}";
-            //}
+            string content;
+            if (status == 1)
+            {
+                content = "Approval request  : ";
+            }
+            else if (status == 2)
+            {
+                content = "your request is approved  ";
+            }
+            else
+            {
+                content = $"your requset  is  rejected due to {comments}";
+            }
             try
             {
                 MailMessage message = new MailMessage(toMailid, fromMailId);
@@ -47,7 +47,7 @@ namespace Approval_Api.helpers
                 
                 message.Subject = subject;
                 message.IsBodyHtml = false; //to make message body as html
-                message.Body = "Congratulation u won 5000 INR";
+                message.Body = content;
                 smtp.Port = 587;
                 smtp.UseDefaultCredentials = true;
                 smtp.Host = "smtp.gmail.com"; //for gmail host

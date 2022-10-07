@@ -11,6 +11,7 @@ using AutoMapper.QueryableExtensions;
 using Approval_Api.ServiceModel.DTO.Response;
 using Approval_Api.ServiceModel.DTO.Request;
 using Approval_Api.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Approval_Api.Controllers
 {
@@ -41,8 +42,9 @@ namespace Approval_Api.Controllers
             }
         }
 
-
+       
         [HttpGet("GetAllRequest")]
+        //[Authorize(Policy = UserRoles.Admin)]
         public async Task<ActionResult<List<RequestDetailsDTO>>> GetAllRequest()
         {
             var data = await _services.GetAllRequest();
@@ -68,9 +70,9 @@ namespace Approval_Api.Controllers
             }
         }
         [HttpGet("GetRequestByUserId")]
-        public async Task<ActionResult<List<RequestDetailsDTO>>> GetRequestByUserId(int id)
+        public  ActionResult<List<RequestDetailsDTO>> GetRequestByManagerId(int id)
         {
-            var data = await _services.GetRequestByUserId(id);
+            var data =  _services.GetRequestByManagerId(id);
             if (data == null)
                 return NotFound("please specify valid id");
             else
@@ -98,7 +100,7 @@ namespace Approval_Api.Controllers
             else
             {
                
-                return  Created("Created successfully",$"Data inserted successfully");
+                return  Ok();
             }
         }
 
@@ -115,7 +117,7 @@ namespace Approval_Api.Controllers
 
         [HttpPut("UpadteRequest")]
 
-        public async Task<ActionResult<RequestDataDTO>>UpdateData(RequestDataDTO request,int id)
+        public async Task<ActionResult<RequestDataDTO>>UpdateRequest(RequestDataDTO request,int id)
         {
 
 
@@ -128,7 +130,7 @@ namespace Approval_Api.Controllers
             }
             else
             {
-                return Ok("successfully modified");
+                return Ok();
             }
 
         }

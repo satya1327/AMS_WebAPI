@@ -34,8 +34,29 @@ namespace Approval_Api.Controllers
             {
                 return BadRequest("No record found");
             }
-            return Ok($"Total record is {data}");
+            return Ok(data);
         }
+        [HttpGet("ApprovedRquestCount")]
+        public async Task<ActionResult<int>> ApproveRequestCount()
+        {
+            var data = _services.GetApproveRequest();
+            if (data == null)
+            {
+                return BadRequest("No record found");
+            }
+            return Ok(data);
+        }
+        [HttpGet("RejectedRquestCount")]
+        public async Task<ActionResult<int>> RejectRequestCount()
+        {
+            var data = _services.GetRejectRequest();
+            if (data == null)
+            {
+                return BadRequest("No record found");
+            }
+            return Ok(data);
+        }
+
 
         [HttpGet("TotalApprovedRequest")]
         public async Task<ActionResult<List<RequestDataDTO>>> GetTotalApprovedRequest()
@@ -49,6 +70,7 @@ namespace Approval_Api.Controllers
                 return Ok(response);
             }
         }
+
 
         [HttpGet("TotalRejectedRequest")]
         public ActionResult<List<RequestDataDTO>> GetTotalRejectedRequest()

@@ -74,9 +74,19 @@ namespace Approval_Api.Services
             return _requestRepository.GetAllRequestHistory();
         }
 
-        public Task<List<RequestDetailsDTO>> GetRequestByUserId(int id)
+        public List<RequestDetailsDTO> GetRequestByManagerId(int id)
         {
-            return _requestRepository.GetRequestByUserId(id);
+            return _requestRepository.GetRequestByManagerId(id);
+        }
+
+        public int GetApproveRequest()
+        {
+            return _requestRepository.GetApproveRequest();
+        }
+
+        public int GetRejectRequest()
+        {
+            return _requestRepository.GetRejectRequest();
         }
 
         //public int ApprovedRequest(Request request,int id)

@@ -27,7 +27,7 @@ namespace Approval_Api.Controllers
             _mapper=mapper;
         }
         [HttpGet("GetAllUser")]
-        [Authorize(Policy = UserRoles.Admin)]
+      
         public async Task<ActionResult<List<UserViewModelDTO>>> GetAllUser()
         {
             var data = _userService.GetAllUsers().ToList();
@@ -37,7 +37,7 @@ namespace Approval_Api.Controllers
                 return Ok(data);
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Employee>>GetUserById(int id)
+        public async Task<ActionResult<UserViewModelDTO>>GetUserById(int id)
         {
             var data=_userService.GetUserById(id);
             if (data == null)
@@ -46,7 +46,7 @@ namespace Approval_Api.Controllers
                 return Ok(data);
         }
         [HttpPost("AddUser")]
-        [Authorize(Policy = UserRoles.Admin)]
+        //[Authorize(Policy = UserRoles.Admin)]
         public async Task<ActionResult<UserRequestDTO>>AddUser(UserRequestDTO user)
         {
             var response = _mapper.Map<Employee>(user);
@@ -61,7 +61,7 @@ namespace Approval_Api.Controllers
         }
 
         [HttpPatch("UpdateRequest")]
-        [Authorize(Policy = UserRoles.Admin)]
+        //[Authorize(Policy = UserRoles.Admin)]
         public async Task<ActionResult<UserRequestDTO>>UpdateUser(UserRequestDTO emp,int id)
         {
             var response = _mapper.Map<Employee>(emp);

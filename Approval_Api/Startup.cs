@@ -66,11 +66,11 @@ namespace Approval_Api
                 };
             });
             });
-            services.AddAuthorization(config =>
-            {
-                config.AddPolicy(UserRoles.Admin, Policies.AdminPolicy());
-                config.AddPolicy(UserRoles.User, Policies.UserPolicy());
-            });
+            //services.AddAuthorization(config =>
+            //{
+            //    config.AddPolicy(UserRoles.Admin, Policies.AdminPolicy());
+            //    config.AddPolicy(UserRoles.User, Policies.UserPolicy());
+            //});
 
             //services.AddAuthorization(config =>
             //{
@@ -94,6 +94,7 @@ namespace Approval_Api
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
             app.UseEndpoints(endpoints =>
             {

@@ -49,15 +49,17 @@ namespace Approval_Api.DataModel_.Repository
         {
             var userList = (from u in _approval_data.Employees
                             join r in _approval_data.Roles on u.RoleId equals r.RoleId
+                           join us in _approval_data.Employees on u.UserId equals us.ManagerId
                           
                             select new UserViewModelDTO
                             {
-                                UserId = u.UserId,
-                                FirstName = u.FirstName,
-                                LastName = u.LastName,
+                                UserId = us.UserId,
+                                FirstName = us.FirstName,
+                                LastName = us.LastName,
                                 Email = u.Email,
                                 roleName = r.RoleName,
                                 UserName = u.UserName,
+                                managerName=u.FirstName+" "+u.LastName
                                
                                 
                             }).ToList();
