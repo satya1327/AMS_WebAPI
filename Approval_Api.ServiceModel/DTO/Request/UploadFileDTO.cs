@@ -11,7 +11,9 @@ namespace Approval_Api.ServiceModel.DTO.Request
     {
       
         public int? ReqId { get; set; }
-        
+        public string Comments { get; set; }
+        public int? SpendAmount { get; set; }
+
         public IFormFile File { get; set; }
 
     }

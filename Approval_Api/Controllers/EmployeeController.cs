@@ -16,21 +16,25 @@ namespace Approval_Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _userService;
         IMapper _mapper;
 
-        public EmployeeController(IEmployeeService userService,IMapper mapper)
+        public EmployeeController(IEmployeeService userService, IMapper mapper)
         {
             _userService = userService;
-            _mapper=mapper;
+            _mapper = mapper;
         }
+
         [HttpGet("GetAllUser")]
+
+
       
         public async Task<ActionResult<List<UserViewModelDTO>>> GetAllUser()
         {
-            var data = _userService.GetAllUsers().ToList();
+            var data =await _userService.GetAllUsers();
             if (data == null)
                 return NotFound("No data found");
             else
@@ -39,18 +43,18 @@ namespace Approval_Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<UserViewModelDTO>>GetUserById(int id)
         {
-            var data=_userService.GetUserById(id);
+            var data=await _userService.GetUserById(id);
             if (data == null)
                 return NotFound("please enter correct id");
             else
                 return Ok(data);
         }
         [HttpPost("AddUser")]
-        //[Authorize(Policy = UserRoles.Admin)]
+
         public async Task<ActionResult<UserRequestDTO>>AddUser(UserRequestDTO user)
         {
             var response = _mapper.Map<Employee>(user);
-            var requestNew = _userService.AddUser(response);
+            var requestNew = await _userService.AddUser(response);
 
             var requestDetails = _mapper.Map<UserRequestDTO>(response);
             if (requestDetails == null)
@@ -61,11 +65,11 @@ namespace Approval_Api.Controllers
         }
 
         [HttpPatch("UpdateRequest")]
-        //[Authorize(Policy = UserRoles.Admin)]
+    
         public async Task<ActionResult<UserRequestDTO>>UpdateUser(UserRequestDTO emp,int id)
         {
             var response = _mapper.Map<Employee>(emp);
-            var requestNew = _userService.UpdateUser(response,id);
+            var requestNew = await _userService.UpdateUser(response,id);
 
             var requestDetails = _mapper.Map<UserRequestDTO>(response);
 
@@ -82,7 +86,7 @@ namespace Approval_Api.Controllers
         [HttpDelete("DeleteUser{id:int}")]
         public async Task<int>DeleteUser(int id)
         {
-            var data=_userService.DeleteUser(id);
+            var data= await _userService.DeleteUser(id);
             if (data == 0)
             {
                 return 0;

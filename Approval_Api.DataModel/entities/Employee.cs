@@ -19,7 +19,6 @@ namespace Approval_Api.DataModel_.entities
         public string Email { get; set; }
         public string Password { get; set; }
         public int? RoleId { get; set; }
-        public DateTime? JoiningDate { get; set; }
         public int? ManagerId { get; set; }
 
         public virtual Role Role { get; set; }

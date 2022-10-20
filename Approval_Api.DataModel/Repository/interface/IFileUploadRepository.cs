@@ -9,6 +9,6 @@ namespace Approval_Api.DataModel_.Repository
 {
     public interface IFileUploadRepository
 {
-        int FileUploads(int id, Upload UploadObj);
+        Task<int> FileUploads( Upload UploadObj);
     }
 }

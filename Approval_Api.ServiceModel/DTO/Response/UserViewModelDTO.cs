@@ -13,9 +13,8 @@ namespace Approval_Api.ServiceModel.DTO.Response
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-        public string roleName { get; set; }
-        public string managerName { get; set; }
-      
+        public int roleId { get; set; }
+   
 
     }
 }

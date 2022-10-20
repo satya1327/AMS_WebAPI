@@ -30,7 +30,7 @@ namespace Approval_Api.Extensions
             services.AddScoped<IFileUploadServices, FileUploadServices>();
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<IAuthenticationServices, AuthenticationServices>();
-           
+            services.AddScoped<ITokenServices, TokenServices>();
             services.AddScoped<MailService>();
             services.AddAutoMapper(typeof(ProfileMapper));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -44,11 +44,11 @@ namespace Approval_Api.Extensions
                    ValidateAudience = false
 
                });
-            //services.AddAuthorization(config =>
-            //{
-            //    config.AddPolicy(UserRoles.Admin, Policies.AdminPolicy());
-            //    config.AddPolicy(UserRoles.User, Policies.UserPolicy());
-            //});
+            services.AddAuthorization(config =>
+            {
+                config.AddPolicy("2", Policies.AdminPolicy());
+                
+            });
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Approval_Api.ServiceModel.DTO.Request
         public string Email { get; set; }
         public string Password { get; set; }
         public int? RoleId { get; set; }
-        public DateTime? JoiningDate { get; set; }
+
         public int? ManagerId { get; set; }
         
     }

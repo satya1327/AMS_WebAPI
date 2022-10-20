@@ -27,18 +27,28 @@ namespace Approval_Api.helpers
             {
                 subject = "Your Request is Rejected";
             }
+            else if (status == 2002)
+            {
+                subject = "Your Request is forwarded";
+            }
             string content;
             if (status == 1)
             {
-                content = "Approval request  : ";
+                content = "Approval request  :  ";
             }
             else if (status == 2)
             {
                 content = "your request is approved  ";
             }
+            else if(status == 2002)
+            {
+                content = $"your requset  is  forwarded";
+            }
             else
             {
+                
                 content = $"your requset  is  rejected due to {comments}";
+            
             }
             try
             {
@@ -62,28 +72,7 @@ namespace Approval_Api.helpers
 
             }
         }
-        //public static string EmailNotification(string fromAddress, string toAddress)
-        //{
-        //    MailMessage message = new MailMessage(fromAddress, toAddress);
-        //    message.Subject = "New request from employee";
-        //    message.Body = "You have request for approval";
-
-        //    SmtpClient smtp = new SmtpClient();
-        //    smtp.Host = "smtp.gmail.com";
-        //    smtp.Port = 587;
-        //    smtp.EnableSsl = true;
-        //    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-        //    System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
-        //    credential.UserName = "satyajitdas159@gmail.com";
-        //    credential.Password = "Chintu@99";
-        //    smtp.UseDefaultCredentials = false;
-        //    smtp.Credentials = credential;
-
-        //    smtp.Send(message);
-
-        //    return "Success";
-        //}
+       
     }
     }
 

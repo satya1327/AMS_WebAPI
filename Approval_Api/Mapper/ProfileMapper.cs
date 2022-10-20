@@ -15,6 +15,7 @@ namespace Approval_Api.Mapper
             CreateMap<Employee, UserRequestDTO>().ReverseMap();
             CreateMap<Employee, AuthenticateRequestDTO>().ReverseMap();
             CreateMap<Employee, AuthenticateResponseDTO>().ReverseMap();
+            
             CreateMap<Upload, UploadFileDTO>().ReverseMap();
         }
     }

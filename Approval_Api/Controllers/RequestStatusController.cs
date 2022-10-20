@@ -26,42 +26,42 @@ namespace Approval_Api.Controllers
             _mapper = mapper;
             _mailService = mailService;
         }
-        [HttpGet("TotalRequest")]
-        public async Task<ActionResult<int>> GetTotalRequest()
-        {
-            var data = _services.GetTotalRequest();
-            if (data == null)
-            {
-                return BadRequest("No record found");
-            }
-            return Ok(data);
-        }
-        [HttpGet("ApprovedRquestCount")]
-        public async Task<ActionResult<int>> ApproveRequestCount()
-        {
-            var data = _services.GetApproveRequest();
-            if (data == null)
-            {
-                return BadRequest("No record found");
-            }
-            return Ok(data);
-        }
-        [HttpGet("RejectedRquestCount")]
-        public async Task<ActionResult<int>> RejectRequestCount()
-        {
-            var data = _services.GetRejectRequest();
-            if (data == null)
-            {
-                return BadRequest("No record found");
-            }
-            return Ok(data);
-        }
+        //[HttpGet("TotalRequest")]
+        //public async Task<ActionResult<int>> GetTotalRequest()
+        //{
+        //    var data =await _services.GetTotalRequest();
+        //    if (data == 0)
+        //    {
+        //        return BadRequest("No record found");
+        //    }
+        //    return Ok(data);
+        //}
+        //[HttpGet("ApprovedRquestCount")]
+        //public async Task<ActionResult<int>> ApproveRequestCount()
+        //{
+        //    var data =await _services.GetApproveRequest();
+        //    if (data == 0)
+        //    {
+        //        return BadRequest("No record found");
+        //    }
+        //    return Ok(data);
+        //}
+        //[HttpGet("RejectedRquestCount")]
+        //public async Task<ActionResult<int>> RejectRequestCount()
+        //{
+        //    var data =await _services.GetRejectRequest();
+        //    if (data == 0)
+        //    {
+        //        return BadRequest("No record found");
+        //    }
+        //    return Ok(data);
+        //}
 
 
         [HttpGet("TotalApprovedRequest")]
         public async Task<ActionResult<List<RequestDataDTO>>> GetTotalApprovedRequest()
         {
-            var data =  _services.GetTotalApprovedRequest();
+            var data = await _services.GetTotalApprovedRequest();
             if (data == null)
                 return BadRequest("no approved request found");
             else
@@ -73,9 +73,9 @@ namespace Approval_Api.Controllers
 
 
         [HttpGet("TotalRejectedRequest")]
-        public ActionResult<List<RequestDataDTO>> GetTotalRejectedRequest()
+        public async Task<ActionResult<List<RequestDataDTO>>> GetTotalRejectedRequest()
         {
-            var data =  _services.GetTotalRejectedRequest();
+            var data =await  _services.GetTotalRejectedRequest();
             if (data == null)
                 return BadRequest("no approved request found");
 
@@ -85,32 +85,7 @@ namespace Approval_Api.Controllers
                 return Ok(response);
             }
         }
-        [HttpPut("ActionRequest")]
-
-        public async Task<ActionResult<int>> ActionRequest(RequestDataDTO request, int id)
-        {
-           
-            var data = _mapper.Map<Request>(request);
-            var requestNew = _services.ActionRequest(data, id);
-            
-            //var requestDetails = _mapper.Map<RequestDetailsDTO>(data);
-            if(data.StatusId==2)
-            {
-               
-                data.UserId = request.UserId;
-               
-
-            }
-            else if(data.StatusId==3)
-            {
-              
-             
-            }
-            if (requestNew != null)
-                return 1;
-            else
-                return 0;
-        }
+     
 
 
 

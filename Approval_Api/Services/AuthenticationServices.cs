@@ -1,6 +1,7 @@
 ﻿using Approval_Api.DataModel_.entities;
 using Approval_Api.DataModel_.Repository;
 using Approval_Api.ServiceModel.DTO.Request;
+using Approval_Api.ServiceModel.DTO.Response;
 using System.Threading.Tasks;
 
 namespace Approval_Api.Services
@@ -13,9 +14,9 @@ namespace Approval_Api.Services
             _authenticationRepository = authenticationRepository;
         }
 
-        public UserRequestDTO AuthenticateUser(UserRequestDTO loginCredentials)
+        public async Task<UserModel> AuthenticateUser(AuthenticateRequestDTO loginCredentials)
         {
-           return  _authenticationRepository.AuthenticateUser(loginCredentials);
+           return  await _authenticationRepository.AuthenticateUser(loginCredentials);
         }
 
         public async Task< bool> CheckUserAvailabity(string userName)

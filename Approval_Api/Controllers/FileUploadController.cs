@@ -4,6 +4,7 @@ using Approval_Api.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Approval_Api.Controllers
 {
@@ -20,10 +21,10 @@ namespace Approval_Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<int> FileUpload(int id, [FromForm] UploadFileDTO upload)
+        public async Task <ActionResult<int>> FileUpload([FromForm] UploadFileDTO upload)
         {
             var response=_mapper.Map<Upload>(upload);
-            var NewResponse = _FileUploadServices.FileUploads(id, response);
+            var NewResponse =await  _FileUploadServices.FileUpload(response);
             var requestDetails = _mapper.Map<UploadFileDTO>(response);
             if (requestDetails == null)
             {

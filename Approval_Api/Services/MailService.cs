@@ -51,7 +51,7 @@ namespace Approval_Api.Services
                     smtp.EnableSsl = true;
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = new NetworkCredential("satyajitdas159@gmail.com", "qqgdfdjtbkanumqn");
-                    //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                  
                     smtp.Send(message);
                 }
                 catch (Exception ex)

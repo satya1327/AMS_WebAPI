@@ -11,10 +11,10 @@ namespace Approval_Api.DataModel_.Repository
 {
     public interface IEmployeeRepository
     {
-        List<UserViewModelDTO> GetAllUsers();
-        UserViewModelDTO GetUserById(int id);
-        int AddUser(Employee emp);
-        int UpdateUser(Employee emp,int id);
-        int DeleteUser(int id);
+        Task<List<UserViewModelDTO>> GetAllUsers();
+        Task<UserViewModelDTO> GetUserById(int id);
+        Task<int> AddUser(Employee emp);
+        Task<int> UpdateUser(Employee emp,int id);
+        Task<int> DeleteUser(int id);
     }
 }

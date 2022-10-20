@@ -17,32 +17,33 @@ namespace Approval_Api.DataModel_.Repository
             _databaseContext = databaseContext;
         }
 
-        public UserRequestDTO AuthenticateUser(UserRequestDTO loginCredentials)
+        public async Task<UserModel> AuthenticateUser(AuthenticateRequestDTO loginCredentials)
         {
-            Employee userMaster = new Employee();
-            var userDetails = _databaseContext.Employees.FirstOrDefault(u => u.Email == loginCredentials.Email
+            UserModel userMaster = new UserModel();
+            var userDetails =await _databaseContext.Employees.FirstOrDefaultAsync(u => u.Email == loginCredentials.Email
 
             && u.Password == loginCredentials.Password);
             if (userDetails != null)
             {
-                var user = new UserRequestDTO()
+                var user = new UserModel
                 {
-                    Email = userDetails.Email,
+                    FirstName = userDetails.FirstName,
+                    LastName= userDetails.LastName,
+                    UserName = userDetails.UserName,
                     UserId = userDetails.UserId,
-                   
-                
-                    
+                    RoleId = userDetails.RoleId,
+                   ManagerId=userDetails.ManagerId      
                 };
 
                 return user;
             }
-
             else
             {
                 return null;
             }
-        }
 
+           
+        }
 
 
         public async Task<bool> CheckUserAvailabity(string email)

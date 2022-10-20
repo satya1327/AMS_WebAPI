@@ -14,19 +14,18 @@ namespace Approval_Api.DataModel.Repository.Interface
 {
         Task<List<RequestDetailsDTO>> GetAllRequest();
         Task<List<RequestDetailsDTO>> GetAllRequestHistory();
-        List<RequestDetailsDTO> GetRequestByManagerId(int id); 
+        Task<List<RequestDetailsDTO>> GetRequestByManagerId(int id); 
         Task<RequestDetailsDTO> GetRequestById(int id);
         Task<int> AddRequest(Request request);
-        Task<int> ActionRequest(Request request, int id);
-        //public int ApprovedRequest(Request request, int id);
+      
         Task<int> DeleteRequest(int id);
         Task<int> UpdateRequest(Request request, int id);
 
-        int GetTotalRequest();
-       List<RequestDataDTO> GetTotalApprovedRequest();
-        List<RequestDataDTO> GetTotalRejectedRequest();
-        int GetApproveRequest();
-        int GetRejectRequest();
+        //Task<int> GetTotalRequest();
+       Task<List<RequestDataDTO>> GetTotalApprovedRequest();
+        Task<List<RequestDataDTO>> GetTotalRejectedRequest();
+        //Task<int> GetApproveRequest();
+        //Task<int> GetRejectRequest();
 
     }
 }

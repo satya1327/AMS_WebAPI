@@ -19,8 +19,8 @@ namespace Approval_Api.DataModel_.Repository
             _databaseContext = databaseContext;
             _webHostEnvironment = webHostEnvironment;
         }
-        [HttpPost]
-        public int FileUploads(int id, Upload UploadObj)
+     
+        public async Task<int> FileUploads(Upload UploadObj)
         {
 
             try
@@ -40,10 +40,12 @@ namespace Approval_Api.DataModel_.Repository
                         {
 
                             FileName = UploadObj.file.FileName,
-                            ReqId = id,
+                            ReqId=UploadObj.ReqId,
+                            Comments = UploadObj.Comments,
+                            SpendAmount = UploadObj.SpendAmount       
                         };
                         _databaseContext.Uploads.Add(upl);
-                        _databaseContext.SaveChanges();
+                        await _databaseContext.SaveChangesAsync();
                         return 1;
                     }
 

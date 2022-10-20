@@ -25,11 +25,7 @@ namespace Approval_Api.Services
             
         }
 
-        public async Task<int> DeleteRequest(int id)
-        {
-           return await _requestRepository.DeleteRequest(id);
-        }
-
+       
         public async Task<List<RequestDetailsDTO>> GetAllRequest()
         {
             return await _requestRepository.GetAllRequest();
@@ -40,58 +36,51 @@ namespace Approval_Api.Services
           return await _requestRepository.GetRequestById(id);
         }
 
-        public   List<RequestDataDTO> GetTotalApprovedRequest()
+        public  async  Task<List<RequestDataDTO>> GetTotalApprovedRequest()
         {
-            return  _requestRepository.GetTotalApprovedRequest();
+            return  await _requestRepository.GetTotalApprovedRequest();
         }
 
-        public  List<RequestDataDTO> GetTotalRejectedRequest()
+        public  async Task<List<RequestDataDTO>> GetTotalRejectedRequest()
         {
-            return  _requestRepository.GetTotalRejectedRequest();
+            return await _requestRepository.GetTotalRejectedRequest();
         }
 
-        public int GetTotalRequest()
-        {
-            return  _requestRepository.GetTotalRequest();
-        }
+        //public async Task<int> GetTotalRequest()
+        //{
+        //    return  await _requestRepository.GetTotalRequest();
+        //}
 
         public async Task<int> UpdateRequest(Request request, int id)
         {
            return await _requestRepository.UpdateRequest(request, id);
         }
-        //public int RejectRequest(Request request, int id)
+      
+        public async  Task<List<RequestDetailsDTO>> GetAllRequestHistory()
+        {
+            return await _requestRepository.GetAllRequestHistory();
+        }
+
+        public async Task<List<RequestDetailsDTO>> GetRequestByManagerId(int id)
+        {
+            return await _requestRepository.GetRequestByManagerId(id);
+        }
+
+        //public async Task<int> GetApproveRequest()
         //{
-        //    return _requestRepository.ActionRequest(request, id);
+        //    return await _requestRepository.GetApproveRequest();
         //}
 
-        public async Task<int> ActionRequest(Request request, int id)
-        {
-            return await _requestRepository.ActionRequest(request, id);
-        }
-
-        public Task<List<RequestDetailsDTO>> GetAllRequestHistory()
-        {
-            return _requestRepository.GetAllRequestHistory();
-        }
-
-        public List<RequestDetailsDTO> GetRequestByManagerId(int id)
-        {
-            return _requestRepository.GetRequestByManagerId(id);
-        }
-
-        public int GetApproveRequest()
-        {
-            return _requestRepository.GetApproveRequest();
-        }
-
-        public int GetRejectRequest()
-        {
-            return _requestRepository.GetRejectRequest();
-        }
-
-        //public int ApprovedRequest(Request request,int id)
+        //public async Task<int> GetRejectRequest()
         //{
-        //    return _requestRepository.ApprovedRequest(request, id);
+        //    return await _requestRepository.GetRejectRequest();
         //}
+
+        public async Task<int> DeleteRequest(int id)
+        {
+            return  await _requestRepository.DeleteRequest(id);
+        }
+
+       
     }
 }

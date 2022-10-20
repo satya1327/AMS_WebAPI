@@ -31,7 +31,7 @@ namespace Approval_Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureDomainServices(Configuration);
@@ -66,17 +66,7 @@ namespace Approval_Api
                 };
             });
             });
-            //services.AddAuthorization(config =>
-            //{
-            //    config.AddPolicy(UserRoles.Admin, Policies.AdminPolicy());
-            //    config.AddPolicy(UserRoles.User, Policies.UserPolicy());
-            //});
-
-            //services.AddAuthorization(config =>
-            //{
-            //    config.AddPolicy(UserRoles.Admin, Policies.AdminPolicy());
-            //    config.AddPolicy(UserRoles.User, Policies.UserPolicy());
-            //});
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

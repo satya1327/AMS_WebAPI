@@ -2,15 +2,16 @@
 using Approval_Api.ServiceModel.DTO.Request;
 using Approval_Api.ServiceModel.DTO.Response;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Approval_Api.Services
 {
     public interface IEmployeeService
     {
-        List<UserViewModelDTO> GetAllUsers();
-        UserViewModelDTO GetUserById(int id);
-        int AddUser(Employee emp);
-        int UpdateUser(Employee emp, int id);
-        int DeleteUser(int id);  
+        Task<List<UserViewModelDTO>> GetAllUsers();
+        Task<UserViewModelDTO> GetUserById(int id);
+        Task<int> AddUser(Employee emp);
+        Task<int> UpdateUser(Employee emp, int id);
+        Task<int> DeleteUser(int id);  
     }
 }

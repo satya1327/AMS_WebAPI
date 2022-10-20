@@ -39,6 +39,7 @@ namespace Approval_Api.DataModel.Repository
             var userList = (from u in _databaseContext.Employees
                             join r in _databaseContext.Requests on u.UserId equals r.UserId
                             join s in _databaseContext.Statuses on r.StatusId equals s.StatusId
+                            join e in _databaseContext.Employees on u.ManagerId equals e.UserId
 
                             select new RequestDetailsDTO
                             {
@@ -49,24 +50,18 @@ namespace Approval_Api.DataModel.Repository
                                 Purpose = r.Purpose,
                                 Description = r.Description,
                                 AdvAmount = r.AdvAmount,
-                                EstimatedAmount = r.EstimatedAmount,
-                               
+                                EstimatedAmount = r.EstimatedAmount,      
                                 Date = r.Date,
                                 statusName = s.StatusName,
                                 Comments = r.Comments,
                                 UserId = u.UserId,
-                                ManagerId=r.ManagerId
-                    
-
-
+                                ManagerId=r.ManagerId,
+                                approverName=e.FirstName
 
                             }).ToListAsync();
             return await userList;
-              
-
-
-
     }
+
 
         public async Task<List<RequestDetailsDTO>> GetAllRequestHistory()
         {
@@ -78,8 +73,7 @@ namespace Approval_Api.DataModel.Repository
                             {
 
                                 ReqId = r.ReqId,
-                                first_name = u.FirstName,
-                                last_name = u.LastName,
+                                Name = u.FirstName+" "+u.LastName,                          
                                 Purpose = r.Purpose,
                                 Description = r.Description,
                                 AdvAmount = r.AdvAmount,
@@ -95,7 +89,7 @@ namespace Approval_Api.DataModel.Repository
 
 
         }
-
+       
         public async Task<RequestDetailsDTO> GetRequestById(int id)
         {
             var userList =await  (from u in _databaseContext.Employees
@@ -107,8 +101,7 @@ namespace Approval_Api.DataModel.Repository
                             {
 
                                 ReqId=r.ReqId,
-                                first_name=u.FirstName,
-                                last_name=u.LastName,
+                                Name=u.FirstName+" "+u.LastName,
                                 Purpose = r.Purpose,
                                 Description = r.Description,
                                 AdvAmount = r.AdvAmount,
@@ -127,9 +120,9 @@ namespace Approval_Api.DataModel.Repository
             return  data;
         }
 
-        public List<RequestDetailsDTO> GetRequestByManagerId(int id)
+        public async Task<List<RequestDetailsDTO>> GetRequestByManagerId(int id)
         {
-            var userList =  (from r in _databaseContext.Requests
+            var userList =await  (from r in _databaseContext.Requests
                                   join e in _databaseContext.Employees on r.UserId equals e.UserId
                                  
                                   join s in _databaseContext.Statuses on r.StatusId equals s.StatusId
@@ -156,7 +149,7 @@ namespace Approval_Api.DataModel.Repository
 
 
 
-                                  }).ToList();
+                                  }).ToListAsync();
            var data=userList.Where(x => x.ManagerId == id).Select(x=>x).ToList();
             return data;
         }
@@ -203,13 +196,64 @@ namespace Approval_Api.DataModel.Repository
                 var data =await _databaseContext.Requests.FindAsync(id);
                 if (data!= null)
                 {
-                   
-                    if(request.StatusId == 3)
+
+                    if (request.StatusId == 3)
                     {
+
                         data.StatusId = 3;
                         data.Comments = request.Comments;
+                        data.UserId = request.UserId;
+                        var employeeEmail = _databaseContext.Employees.Where(e => e.UserId == request.UserId).Select(s => s.Email).FirstOrDefault();
+                        var managerEmail = _databaseContext.Employees.Where(m => m.UserId == data.ManagerId).Select(x => x.Email).FirstOrDefault();
+                        string sender = Convert.ToString(employeeEmail);
+                        string reciever = Convert.ToString(managerEmail);
+                        int status = Convert.ToInt32(request.StatusId);
+
+                        data.UserId = request.UserId;
+                        EmailServices.smtpMailer(status, reciever, sender, request.Comments);
+
                     }
-                        //   book.CoverFileName=oldbookData.CoverFileName;
+                    else if (request.StatusId == 2)
+                    {
+
+                        data.StatusId = 2;
+                        var employeeEmail = _databaseContext.Employees.Where(e => e.UserId == request.UserId).Select(s => s.Email).FirstOrDefault();
+                        var managerEmail = _databaseContext.Employees.Where(m => m.UserId == data.ManagerId).Select(x => x.Email).FirstOrDefault();
+                        string sender = Convert.ToString(employeeEmail);
+                        string reciever = Convert.ToString(managerEmail);
+                        int status = Convert.ToInt32(request.StatusId);
+
+                        data.UserId = request.UserId;
+                        EmailServices.smtpMailer(status, reciever, sender, "");
+                    }
+                    else if (request.StatusId == 1002)
+                    {
+
+                        data.StatusId = 1002;
+
+                        data.UserId = request.UserId;
+                       
+                    }
+                    else if (request.StatusId == 2002)
+                    {
+
+                        data.StatusId = 2002;
+                        
+                        var employeeEmail = _databaseContext.Employees.Where(e => e.UserId == data.UserId).Select(s => s.Email).FirstOrDefault();
+                        var managerEmail = "sachinmittalkod@gmail.com";
+                        string sender = Convert.ToString(employeeEmail);
+                        string reciever = Convert.ToString(managerEmail);
+                        int status = Convert.ToInt32(request.StatusId);
+
+                        data.UserId = request.UserId;
+                        data.ManagerId = 2;
+                        EmailServices.smtpMailer(status,sender, reciever,   "");
+
+                        data.UserId = request.UserId;
+
+                    }
+
+
                     data.Purpose = request.Purpose;
                     data.Description = request.Description;
                     data.EstimatedAmount = request.EstimatedAmount;
@@ -231,104 +275,11 @@ namespace Approval_Api.DataModel.Repository
 
         }
 
-        public async Task<int> ActionRequest(Request request, int id)
-        {
-            try
-            {
-                var data = _databaseContext.Requests.Find(id);
-               
-
-                if (data != null)
-                {
-
-                    if (request.StatusId == 3)
-                    {
-                      
-                        data.StatusId = 3;
-                        data.Comments = request.Comments;
-                        data.UserId = request.UserId;
-                        var employeeEmail = _databaseContext.Employees.Where(e => e.UserId == request.UserId).Select(s => s.Email).FirstOrDefault();
-                        var managerEmail = _databaseContext.Employees.Where(m => m.UserId == request.ManagerId).Select(x => x.Email).FirstOrDefault();
-                        string sender = Convert.ToString(employeeEmail);
-                        string reciever = Convert.ToString(managerEmail);
-                        int status = Convert.ToInt32(request.StatusId);
-
-                        data.UserId = request.UserId;
-                        EmailServices.smtpMailer(status, reciever, sender,request.Comments);
-
-                    }
-                    else if (request.StatusId == 2)
-                    {
-                        
-                        data.StatusId = 2;
-                        var employeeEmail = _databaseContext.Employees.Where(e => e.UserId == request.UserId).Select(s => s.Email).FirstOrDefault();
-                        var managerEmail = _databaseContext.Employees.Where(m => m.UserId == request.ManagerId).Select(x => x.Email).FirstOrDefault();
-                        string sender = Convert.ToString(employeeEmail);
-                        string reciever = Convert.ToString(managerEmail);
-                        int status=Convert.ToInt32(request.StatusId);
-                      
-                        data.UserId = request.UserId;
-                        EmailServices.smtpMailer(status, reciever, sender,"");
-                    }
-
-
-                    //   book.CoverFileName=oldbookData.CoverFileName;
-                    
-                   
-                    
-
-                }
-                _databaseContext.Entry(data).State = EntityState.Modified;
-                _databaseContext.SaveChanges();
-                return 1;
-            }
-            catch
-            {
-                throw;
-            }
-
-        }
-
-
-        //public int ApprovedRequest(Request request, int id)
-        //{
-        //    try
-        //    {
-        //        var data = _databaseContext.Requests.Find(id);
-        //        if (data != null)
-        //        {
-
-        //            if (request.StatusId == 2)
-        //            {
-        //                data.StatusId = 2;
-                        
-        //            }
-        //            //   book.CoverFileName=oldbookData.CoverFileName;
-
-        //            data.UserId = request.UserId;
-                    
-
-        //        }
-        //        _databaseContext.Entry(data).State = EntityState.Modified;
-        //        _databaseContext.SaveChanges();
-        //        return 1;
-        //    }
-        //    catch
-        //    {
-        //        throw;
-        //    }
-
-        //}
-
-        //public async Task<int> GetTotlRequest()
-        //{
-            
-        //}
-
-        public List<RequestDataDTO> GetTotalApprovedRequest()
+      
+        public async Task<List<RequestDataDTO>> GetTotalApprovedRequest()
         {
 
-            var userList = (from u in _databaseContext.Employees
+            var userList =await  (from u in _databaseContext.Employees
                             join r in _databaseContext.Requests on u.UserId equals r.UserId
                             join s in _databaseContext.Statuses on r.StatusId equals s.StatusId
 
@@ -350,7 +301,7 @@ namespace Approval_Api.DataModel.Repository
 
 
 
-                            }).ToList();
+                            }).ToListAsync();
 
             var bystatus=userList.Where(s=>s.StatusId==2).Select(x=>x).ToList();
             
@@ -358,9 +309,9 @@ namespace Approval_Api.DataModel.Repository
            
 
         }
-        public  List<RequestDataDTO> GetTotalRejectedRequest()
+        public  async Task<List<RequestDataDTO>> GetTotalRejectedRequest()
         {
-            var userList =  (from u in _databaseContext.Employees
+            var userList =await  (from u in _databaseContext.Employees
                             join r in _databaseContext.Requests on u.UserId equals r.UserId
                             join s in _databaseContext.Statuses on r.StatusId equals s.StatusId
 
@@ -381,29 +332,28 @@ namespace Approval_Api.DataModel.Repository
 
 
 
-                            }).ToList();
+                            }).ToListAsync();
 
             var bystatus = userList.Where(s => s.StatusId == 3).Select(x => x).ToList();
             return bystatus;
         }
 
-        public int GetTotalRequest()
-        {
-            var data = _databaseContext.Requests.Select(x => x.ReqId).Count();
-            return  data;
-        }
-        public int GetApproveRequest()
-        {
-            var data = _databaseContext.Requests.Where(x => x.StatusId == 2).Count();
-            return data;
-        }
-        public int GetRejectRequest()
-        {
-            var data = _databaseContext.Requests.Where(x => x.StatusId == 3).Count();
-            return data;
-        }
+        //public async Task<int> GetTotalRequest()
+        //{
+        //    var data =await  _databaseContext.Requests.Where(x => x.StatusId==1  ).CountAsync();
+        //    return  data;
+        //}
+        //public async Task<int> GetApproveRequest()
+        //{
+        //    var data =await  _databaseContext.Requests.Where(x => x.StatusId == 2).CountAsync();
+        //    return data;
+        //}
+        //public async Task<int> GetRejectRequest()
+        //{
+        //    var data =await  _databaseContext.Requests.Where(x => x.StatusId == 3).CountAsync();
+        //    return data;
+        //}
 
-
-
+       
     }
 }

@@ -28,24 +28,6 @@ namespace Approval_Api.Controllers
             return await _authenticationService.CheckUserAvailabity(email);
         }
 
-        //[HttpPost("AuthenticationUser")]
-
-        //public  ActionResult<UserRequestDTO> AuthenticateUser(UserRequestDTO emp)
-        //{
-        //    var response = _mapper.Map<Employee>(emp);
-        //    var requestNew =  _authenticationService.AuthenticateUser(response);
-
-        //    var requestDetails =  _mapper.Map<UserRequestDTO>(requestNew);
-        //    if (requestDetails != null)
-        //    {
-        //        return Ok(requestDetails);
-        //    }
-        //    else
-        //    {
-        //        return BadRequest("No data found");
-        //    }
-        //}
-
         [HttpGet("IsuserExist")]
 
         public async Task<bool>IsUserExist(int UserId)

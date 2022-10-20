@@ -1,5 +1,6 @@
 ﻿using Approval_Api.DataModel_.entities;
 using Approval_Api.DataModel_.Repository;
+using System.Threading.Tasks;
 
 namespace Approval_Api.Services
 {
@@ -11,9 +12,9 @@ namespace Approval_Api.Services
             _fileUploadRepository = fileUploadRepository;
         }
 
-        public int FileUploads(int id, Upload UploadObj)
+        public async Task<int> FileUpload(Upload upload)
         {
-            return _fileUploadRepository.FileUploads(id, UploadObj);
+            return await _fileUploadRepository.FileUploads(upload);
         }
     }
 }

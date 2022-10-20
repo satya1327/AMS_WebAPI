@@ -3,6 +3,7 @@ using Approval_Api.DataModel_.Repository;
 using Approval_Api.ServiceModel.DTO.Request;
 using Approval_Api.ServiceModel.DTO.Response;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Approval_Api.Services
 {
@@ -14,30 +15,30 @@ namespace Approval_Api.Services
             _userRepository = userRepository;
         }
 
-        public int AddUser(Employee emp)
+        public async Task<int> AddUser(Employee emp)
         {
-            return _userRepository.AddUser(emp);
+            return await _userRepository.AddUser(emp);
         }
 
-        public int DeleteUser(int id)
+        public async Task<int> DeleteUser(int id)
         {
-            return _userRepository.DeleteUser(id);
+            return await _userRepository.DeleteUser(id);
         }
 
-        public List<UserViewModelDTO> GetAllUsers()
+        public async Task<List<UserViewModelDTO>> GetAllUsers()
         {
-            return _userRepository.GetAllUsers();
+            return await _userRepository.GetAllUsers();
         }
 
-        public UserViewModelDTO GetUserById(int id)
+        public async  Task<UserViewModelDTO> GetUserById(int id)
         {
-            return _userRepository.GetUserById(id);
+            return await _userRepository.GetUserById(id);
 
         }
 
-        public int UpdateUser(Employee emp, int id)
+        public async  Task<int> UpdateUser(Employee emp, int id)
         {
-            return _userRepository.UpdateUser(emp, id);
+            return await _userRepository.UpdateUser(emp, id);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Approval_Api.Controllers
 
        
         [HttpGet("GetAllRequest")]
-        //[Authorize(Policy = UserRoles.Admin)]
+       
         public async Task<ActionResult<List<RequestDetailsDTO>>> GetAllRequest()
         {
             var data = await _services.GetAllRequest();
@@ -56,7 +56,7 @@ namespace Approval_Api.Controllers
                 return Ok(response);
             }
         }
-        [HttpGet("{id:int}")]
+        [HttpGet("GetRequestById/{id}")]
         public async Task<ActionResult<RequestDetailsDTO>> GetRequestById(int id)
         {
             var data = await _services.GetRequestById(id);
@@ -69,10 +69,10 @@ namespace Approval_Api.Controllers
                 return Ok(response);
             }
         }
-        [HttpGet("GetRequestByUserId")]
-        public  ActionResult<List<RequestDetailsDTO>> GetRequestByManagerId(int id)
+        [HttpGet("GetRequestByManagerId")]
+        public  async Task<ActionResult<List<RequestDetailsDTO>>> GetRequestByManagerId(int id)
         {
-            var data =  _services.GetRequestByManagerId(id);
+            var data =await  _services.GetRequestByManagerId(id);
             if (data == null)
                 return NotFound("please specify valid id");
             else
@@ -104,18 +104,8 @@ namespace Approval_Api.Controllers
             }
         }
 
-        [HttpDelete("DeleteRequest")]
 
-        public async Task<ActionResult<Request>>DeleteRequest(int id)
-        {
-            var data = await _services.DeleteRequest(id);
-            if (data == 0)
-                return BadRequest("please enter valid id");
-            else
-                return Ok("successfully deleted");
-        }
-
-        [HttpPut("UpadteRequest")]
+        [HttpPatch("UpadteRequest/{id}")]
 
         public async Task<ActionResult<RequestDataDTO>>UpdateRequest(RequestDataDTO request,int id)
         {
@@ -134,34 +124,22 @@ namespace Approval_Api.Controllers
             }
 
         }
+        [HttpDelete("DeleteRequest{id:int}")]
+        public async Task<int> DeleteUser(int id)
+        {
+            var data = await _services.DeleteRequest(id);
+            if (data == 0)
+            {
+                return 0;
+            }
+            else
+            {
 
-       
-        //[HttpPut("RejectRequest")]
+                return 1;
+            }
+        }
 
-        //public async Task<ActionResult<int>> RejectRequest(RequestDataDTO request, int id)
-        //{
-        //    var data = _mapper.Map<Request>(request);
-        //    var requestNew = _services.RejectRequest(data, id);
-        //    var requestDetails = _mapper.Map<RequestDetailsDTO>(data);
 
-        //    if (requestNew == null)
-        //        return 0;
-        //    else
-        //        return 1;
-        //}
-        //[HttpPut("ApproveRequest")]
-
-        //public async Task<ActionResult<int>> ApproveRequest(RequestDataDTO request, int id)
-        //{
-        //    var data = _mapper.Map<Request>(request);
-        //    var requestNew = _services.ApprovedRequest(data, id);
-        //    var requestDetails = _mapper.Map<RequestDetailsDTO>(data);
-
-        //    if (requestNew == null)
-        //        return 0;
-        //    else
-        //        return 1;
-        //}
 
 
 

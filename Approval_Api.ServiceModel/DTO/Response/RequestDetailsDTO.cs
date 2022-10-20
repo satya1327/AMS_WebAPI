@@ -23,6 +23,8 @@ namespace Approval_Api.ServiceModel.DTO.Response
         public string statusName { get; set; }
         public string Comments { get; set; }
         public string approver { get; set; }
+        public string Name { get; set; }
+        public string approverName { get; set; }
     
     }
 }
