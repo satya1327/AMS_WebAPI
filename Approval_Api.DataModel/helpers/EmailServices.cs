@@ -29,7 +29,7 @@ namespace Approval_Api.helpers
             }
             else if (status == 2002)
             {
-                subject = "Your Request is forwarded";
+                subject = "Your Request is raised to you";
             }
             string content;
             if (status == 1)
@@ -42,7 +42,7 @@ namespace Approval_Api.helpers
             }
             else if(status == 2002)
             {
-                content = $"your requset  is  forwarded";
+                content = $"your requset  is  Raised to you";
             }
             else
             {

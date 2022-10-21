@@ -43,7 +43,6 @@ namespace Approval_Api.DataModel.Repository
 
                             select new RequestDetailsDTO
                             {
-
                                 ReqId = r.ReqId,
                                 first_name = u.FirstName,
                                 last_name = u.LastName,
@@ -240,13 +239,13 @@ namespace Approval_Api.DataModel.Repository
                         data.StatusId = 2002;
                         
                         var employeeEmail = _databaseContext.Employees.Where(e => e.UserId == data.UserId).Select(s => s.Email).FirstOrDefault();
-                        var managerEmail = "sachinmittalkod@gmail.com";
+                        var managerEmail = "satyajitchintu7@gmail.com";
                         string sender = Convert.ToString(employeeEmail);
                         string reciever = Convert.ToString(managerEmail);
                         int status = Convert.ToInt32(request.StatusId);
 
-                        data.UserId = request.UserId;
                         data.ManagerId = 2;
+                        data.UserId = 2;
                         EmailServices.smtpMailer(status,sender, reciever,   "");
 
                         data.UserId = request.UserId;

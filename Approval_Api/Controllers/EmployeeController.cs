@@ -16,6 +16,7 @@ namespace Approval_Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+  
     
     public class EmployeeController : ControllerBase
     {
@@ -31,7 +32,7 @@ namespace Approval_Api.Controllers
         [HttpGet("GetAllUser")]
 
 
-      
+        [Authorize(Policy = "2")]
         public async Task<ActionResult<List<UserViewModelDTO>>> GetAllUser()
         {
             var data =await _userService.GetAllUsers();
@@ -64,8 +65,9 @@ namespace Approval_Api.Controllers
             return Ok("user added successfully");
         }
 
-        [HttpPatch("UpdateRequest")]
-    
+        [HttpPatch("UpdateUser")]
+        [Authorize(Policy = "2")]
+
         public async Task<ActionResult<UserRequestDTO>>UpdateUser(UserRequestDTO emp,int id)
         {
             var response = _mapper.Map<Employee>(emp);
