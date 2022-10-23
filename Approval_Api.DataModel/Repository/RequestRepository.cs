@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
@@ -46,6 +47,7 @@ namespace Approval_Api.DataModel.Repository
                                 ReqId = r.ReqId,
                                 first_name = u.FirstName,
                                 last_name = u.LastName,
+                                name=u.FirstName+" "+u.LastName,
                                 Purpose = r.Purpose,
                                 Description = r.Description,
                                 AdvAmount = r.AdvAmount,
@@ -72,7 +74,7 @@ namespace Approval_Api.DataModel.Repository
                             {
 
                                 ReqId = r.ReqId,
-                                Name = u.FirstName+" "+u.LastName,                          
+                                name = u.FirstName+" "+u.LastName,                          
                                 Purpose = r.Purpose,
                                 Description = r.Description,
                                 AdvAmount = r.AdvAmount,
@@ -88,36 +90,37 @@ namespace Approval_Api.DataModel.Repository
 
 
         }
-       
+
         public async Task<RequestDetailsDTO> GetRequestById(int id)
         {
-            var userList =await  (from u in _databaseContext.Employees
-                            join r in _databaseContext.Requests on u.UserId equals r.UserId
-                            join s in _databaseContext.Statuses on r.StatusId equals s.StatusId
-                            
+            var userList = await (from u in _databaseContext.Employees
+                                  join r in _databaseContext.Requests on u.UserId equals r.UserId
+                                  join s in _databaseContext.Statuses on r.StatusId equals s.StatusId
 
-                            select new RequestDetailsDTO
-                            {
 
-                                ReqId=r.ReqId,
-                                Name=u.FirstName+" "+u.LastName,
-                                Purpose = r.Purpose,
-                                Description = r.Description,
-                                AdvAmount = r.AdvAmount,
-                                EstimatedAmount = r.EstimatedAmount,
-                                Date = r.Date,
-                                statusName = s.StatusName,
-                                Comments = r.Comments,
-                                UserId = u.UserId,
-                              
+                                  select new RequestDetailsDTO
+                                  {
 
+                                      ReqId = r.ReqId,
+                                     
+                                      Purpose = r.Purpose,
+                                      Description = r.Description,
+                                      AdvAmount = r.AdvAmount,
+                                      EstimatedAmount = r.EstimatedAmount,
+                                      Date = r.Date,
+                                      statusName = s.StatusName,
+                                      Comments = r.Comments,
+                                      UserId = u.UserId,
 
 
 
-                            }).ToListAsync();
+
+
+                                  }).ToListAsync();
             var data = userList.Where(x => x.ReqId == id).FirstOrDefault();
-            return  data;
+            return data;
         }
+
 
         public async Task<List<RequestDetailsDTO>> GetRequestByManagerId(int id)
         {
@@ -246,6 +249,7 @@ namespace Approval_Api.DataModel.Repository
 
                         data.ManagerId = 2;
                         data.UserId = 2;
+                        data.StatusId = request.StatusId;
                         EmailServices.smtpMailer(status,sender, reciever,   "");
 
                         data.UserId = request.UserId;
@@ -337,21 +341,7 @@ namespace Approval_Api.DataModel.Repository
             return bystatus;
         }
 
-        //public async Task<int> GetTotalRequest()
-        //{
-        //    var data =await  _databaseContext.Requests.Where(x => x.StatusId==1  ).CountAsync();
-        //    return  data;
-        //}
-        //public async Task<int> GetApproveRequest()
-        //{
-        //    var data =await  _databaseContext.Requests.Where(x => x.StatusId == 2).CountAsync();
-        //    return data;
-        //}
-        //public async Task<int> GetRejectRequest()
-        //{
-        //    var data =await  _databaseContext.Requests.Where(x => x.StatusId == 3).CountAsync();
-        //    return data;
-        //}
+        
 
        
     }

@@ -1,0 +1,16 @@
+mat-card{
+  width:50%;
+  height: auto;;
+}
+.outerdivs{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap:nowrap;
+
+}
+/* mat-card-header
+{
+  background-color:rgb(47, 243, 47);
+  justify-content: center;
+
+} */

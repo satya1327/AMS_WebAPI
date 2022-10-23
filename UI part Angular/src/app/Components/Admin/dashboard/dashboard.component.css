@@ -1,0 +1,22 @@
+
+.example-card {
+  max-width: 300px;
+  height: auto;
+  background-color: rgb(249, 245, 245);
+  margin-top: 8%;
+  height: 100px;
+}
+
+.example-header-image {
+  /* background-image: url('../../../../assets/images/chart-graph-business-finance.jpg'); */
+  background-size: cover;
+}
+.container{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+
+}
+
+

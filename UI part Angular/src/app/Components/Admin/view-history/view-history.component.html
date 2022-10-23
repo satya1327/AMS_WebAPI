@@ -1,0 +1,14 @@
+<input type="text" placeholder="filter"  style="margin-top:80px;background-color: rgb(149, 239, 244);" (keyup)="quickSerach()" [(ngModel)]="searchvalue">
+<ag-grid-angular
+  id="aggrid"
+  style="height: 400px; width: 100%; padding-top: 5%; color: white"
+  class="ag-theme-alpine-dark ag-theme-acmecorp"
+
+  [columnDefs]="colDefs"
+  rowSelection="multiple"
+  [pagination]="true"
+  [rowHeight]="30"
+  [paginationAutoPageSize]="true"
+  (gridReady)="onGridReady($event)"
+>
+</ag-grid-angular>

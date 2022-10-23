@@ -1,0 +1,96 @@
+<mat-sidenav-container>
+  <mat-sidenav #drawer mode="side" opened>
+    <p style="font-size: 20px; margin-left: 25%; margin-top: 10%">
+      Hi! {{ firstName + " " + lastName }}
+    </p>
+    <div id="avtar">
+      <img
+        style="height: 40px; width: 70px; border-radius: 50%"
+        src="../../../../assets/images/user-3331256__340.webp"
+        alt=""
+      />
+    </div>
+    <br />
+
+    <button
+      style="color: white; margin-top: 5%"
+      mat-menu-item
+      (click)="openCreateDialog()"
+    >
+      <mat-icon class="mat-18" style="color: rgb(44, 10, 233)"
+        ><span class="material-symbols-outlined"> add_circle </span></mat-icon
+      >
+      createRequest</button
+    ><br />
+    <button
+      style="color: white; margin-top: -10%"
+      mat-menu-item
+      routerLink="myRequest"
+    >
+      <mat-icon class="mat-18" style="color: rgb(43, 230, 2)"
+        ><span class="material-symbols-outlined">
+          request_quote
+        </span></mat-icon
+      >
+      MyRequest</button
+    ><br />
+
+    <button
+      style="color: white; margin-top: -10%"
+      mat-menu-item
+      routerLink="userHistory"
+    >
+      <mat-icon class="mat-18" style="color: rgb(114, 104, 104)"
+        ><span class="material-symbols-outlined"> history </span></mat-icon
+      >View-History</button
+    ><br />
+
+    <button
+      style="color: white; margin-top: -10%"
+      mat-menu-item
+      routerLink="/login"
+    >
+      <mat-icon class="mat-18" style="color: rgb(250, 9, 9)"
+        ><span class="material-symbols-outlined"> logout </span></mat-icon
+      >Logout
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content">
+      <div class="toolbar">
+        <mat-toolbar class="mat-elevation-z4">
+          <button type="button" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+
+          <span>Approval Management System</span>
+          <span class="example-spacer"></span>
+          <button
+            mat-icon-button
+            class="example-icon"
+            aria-label="Example icon-button with share icon"
+          >
+            <!-- <mat-icon routerLink="/home">
+                <span class="material-symbols-outlined">logout</span>
+              </mat-icon> -->
+          </button>
+          <button mat-button [matMenuTriggerFor]="afterMenu">
+            <!-- <mat-icon>account_box</mat-icon> -->
+          </button>
+          <mat-menu #afterMenu="matMenu" xPosition="after">
+            <button
+              mat-menu-item
+              [routerLink]="['/viewrequest']"
+              routerLinkActive="router-link-active"
+            >
+              Requests
+            </button>
+          </mat-menu>
+        </mat-toolbar>
+      </div>
+      <div class="main">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

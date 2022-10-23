@@ -88,11 +88,12 @@ namespace Approval_Api.DataModel_.Repository
                 return 0;
             else
                 data.UserName = emp.UserName;
-                emp.RoleId = data.RoleId;
+                data.RoleId = emp.RoleId;
                 data.FirstName = emp.FirstName;
                 data.LastName = emp.LastName;
                 emp.Email = data.Email;
                 data.Password = emp.Password;
+                data.ManagerId = emp.ManagerId;
                 _approval_data.Entry(data).State = EntityState.Modified;
                await  _approval_data.SaveChangesAsync();
             return 1;

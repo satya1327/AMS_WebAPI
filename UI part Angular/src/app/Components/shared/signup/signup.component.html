@@ -1,0 +1,143 @@
+<div id="signUp">
+  <img
+    src="../../../../assets/images/80d1446c0d6e9c4705a852aac2d4772a.jpg"
+    alt=""
+  />
+  <mat-card class="example-card">
+    <mat-card-content>
+      <div class="login">
+        <div class="subheader">
+          <div style="padding-top: 5%">
+            <span style="color: white"> SignUp</span>
+          </div>
+        </div>
+
+        <form [formGroup]="signupForm" class="example-form">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="firstName"
+              formControlName="firstName"
+            />
+            <mat-error>
+              <span
+                *ngIf="
+                  !signupForm.get('firstName').valid &&
+                  signupForm.get('firstName').touched
+                "
+                >Please Enter firstName</span
+              >
+            </mat-error>
+          </mat-form-field>
+          &nbsp;&nbsp;
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="lastName" formControlName="lastName" />
+            <mat-error>
+              <span
+                *ngIf="
+                  !signupForm.get('lastName').valid &&
+                  signupForm.get('lastName').touched
+                "
+                >Please Enter lastName</span
+              >
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard">
+            <mat-label>email</mat-label>
+            <input matInput formControlName="email" />
+            <mat-error>
+              <span
+                *ngIf="
+                  !signupForm.get('email').valid &&
+                  signupForm.get('email').touched
+                "
+                >Please Enter valid email</span
+              >
+            </mat-error> </mat-form-field
+          >&nbsp;&nbsp;
+
+          <mat-form-field appearance="standard">
+            <mat-label>userName</mat-label>
+            <input matInput formControlName="userName" />
+            <mat-error>
+              <span
+                *ngIf="
+                  !signupForm.get('userName').valid &&
+                  signupForm.get('userName').touched
+                "
+                >Please Enter userName</span
+              >
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard">
+            <mat-label>password</mat-label>
+            <input matInput formControlName="password" />
+            <mat-error>
+              <span
+                *ngIf="
+                  !signupForm.get('password').valid &&
+                  signupForm.get('password').touched
+                "
+                >Please Enter valid password</span
+              >
+            </mat-error> </mat-form-field
+          >&nbsp;
+
+          <!-- <mat-form-field appearance="standard">
+            <mat-label>confirmPassword</mat-label>
+            <input matInput formControlName="password" />
+            <mat-error>
+              <span *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched">Please Enter confirmPassword</span>
+           </mat-error>
+          </mat-form-field>
+
+          <mat-error
+          *ngIf="this.signupForm.get('password')?.dirty && this.signupForm.hasError('passwordsNotMatching')">
+          Passwords are not matching!</mat-error> -->
+
+          <mat-form-field appearance="standard">
+            <mat-label>Roles</mat-label>
+            <mat-select formControlName="RoleId" [(ngModel)]="rolesId">
+              <mat-option *ngFor="let role of roles" [value]="role.value">
+                {{ role.viewValue }}
+              </mat-option>
+            </mat-select> </mat-form-field
+          >&nbsp;
+
+          <mat-form-field appearance="standard" *ngIf="rolesId == 1">
+            <mat-label>manager</mat-label>
+            <mat-select formControlName="ManagerId" data-live-search="true">
+              <mat-option
+                *ngFor="let manager of managerId"
+                [value]="manager.userId"
+              >
+                {{ manager.firstName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br />
+
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="onSubmit()"
+              id="user"
+            >
+              Sign Up
+            </button> </mat-card-actions
+          ><br /><br />
+          <b style="font-size: 15px">
+            If you have account??
+            <a style="font-size: bold" routerLink="/login">logIn</a>
+          </b>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<router-outlet></router-outlet>

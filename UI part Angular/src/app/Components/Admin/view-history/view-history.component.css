@@ -1,0 +1,38 @@
+
+@import "~ag-grid-community/styles/ag-grid.css";
+@import "~ag-grid-community/styles/ag-theme-alpine.css";
+table {
+  width: 100%;
+  padding-top:5%
+}
+th{
+  background-color: rgb(0, 1, 1);
+  color: white;
+
+  font-size: medium;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(odd) {background-color: #9bf0f8;}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+#aggrid{
+
+margin-top:-55px
+}
+.ag-theme-acmecorp {
+  --ag-odd-row-background-color: #aaa;
+}
+
+
+.example-spacer {
+  flex: 1 1 auto;
+
+}
+.mat-elevation-z8{
+  padding-top:5%
+}
+
+

@@ -1,0 +1,79 @@
+
+*{
+  margin:0;
+  padding:0;
+}
+form{
+  margin-top:15%
+}
+img {
+
+  height: 100vh;
+  width:100vw;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.example-card {
+
+  max-width: 450px;
+  left:50%;
+  top:50%;
+  height: 90vh;
+  width:60vw;
+  transform: translate(-50%,-50%);
+  position: absolute;
+  z-index: 10;
+  padding:0px;
+  background-color: rgb(255, 255, 252);
+}
+.image {
+  margin:0 auto;
+  height: 30%;
+  width: 30%;
+}
+.login {
+  text-align: center;
+
+}
+.example-form {
+  text-align: center;
+
+}
+.password {
+  margin-top: -4%;
+}
+.buttonlink {
+  margin-left: 20%;
+}
+
+input.ng-invalid.ng-touched {
+  color: red;
+
+}
+h1 {
+  color: rgb(188, 177, 177);
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+  text-align: center;
+}
+#navnar-header{
+  background-color: rgb(3, 87, 231);
+  height:10%;
+  width:100%
+
+}
+#admin:hover{
+  transform: scale(1.2, 1.2);
+}
+#user:hover{
+  transform: scale(1.2, 1.2);
+}
+.subheader{
+  height:80px;
+  width:100%;
+  background-color: rgb(247, 5, 5);
+  font-size: 30px;
+
+
+}

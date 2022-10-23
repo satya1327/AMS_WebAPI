@@ -32,7 +32,6 @@ namespace Approval_Api.Controllers
         [HttpGet("GetAllUser")]
 
 
-        [Authorize(Policy = "2")]
         public async Task<ActionResult<List<UserViewModelDTO>>> GetAllUser()
         {
             var data =await _userService.GetAllUsers();
@@ -52,17 +51,17 @@ namespace Approval_Api.Controllers
         }
         [HttpPost("AddUser")]
 
-        public async Task<ActionResult<UserRequestDTO>>AddUser(UserRequestDTO user)
+        public async Task<ActionResult<int>>AddUser(UserRequestDTO user)
         {
             var response = _mapper.Map<Employee>(user);
             var requestNew = await _userService.AddUser(response);
 
             var requestDetails = _mapper.Map<UserRequestDTO>(response);
             if (requestDetails == null)
-                return BadRequest("insert data");
+                return 0;
             else
 
-            return Ok("user added successfully");
+            return 1;
         }
 
         [HttpPatch("UpdateUser")]
@@ -75,9 +74,9 @@ namespace Approval_Api.Controllers
 
             var requestDetails = _mapper.Map<UserRequestDTO>(response);
 
-            if (emp == null)
+            if (requestNew == 0)
             {
-                return BadRequest("no data found");
+                return BadRequest($"no data found with id : {id}");
             }
             else
             {

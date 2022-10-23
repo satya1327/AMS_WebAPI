@@ -1,0 +1,90 @@
+<!-- <nav id="navnar-header">
+<h1>APPROVAL MANAGEMENT SYSTEM</h1>
+</nav> -->
+<div id="login">
+  <img src="../../../../assets/images/11027692.jpg" alt="" />
+  <mat-card class="example-card">
+    <mat-card-header>
+      <img
+        class="image"
+        src="https://www.worldlandtrust.org/wp-content/uploads/2017/11/euromonitor-logo.png"
+        alt=""
+      />
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="login">
+        <strong> Login</strong>
+      </div>
+      <form [formGroup]="loginForm" class="example-form">
+        <div>
+          <mat-form-field class="example-full-width" appearance="standard">
+            <mat-label>email</mat-label>
+            <input
+              type="email"
+              matInput
+              placeholder="Ex. Euromonitor@outlook.com"
+              formControlName="email"
+            />
+
+          </mat-form-field>
+          <div
+            *ngIf="this.loginForm.controls?.['email']?.touched && this.loginForm.controls?.['email']?.invalid"
+          >
+            <div
+              *ngIf="this.loginForm.controls?.['email']?.errors?.['required']"
+              style="color: red"
+            >
+              please fill the usrename
+            </div>
+            <div
+              *ngIf="this.loginForm.controls?.['email']?.errors?.['email']"
+              style="color: red"
+            >
+              please enter the valid username
+            </div>
+          </div>
+
+          <br />
+
+          <mat-form-field
+            class="example-full-width"
+            appearance="standard"
+            class="password"
+          >
+            <mat-label>password</mat-label>
+            <input type="password" matInput formControlName="password" />
+          </mat-form-field>
+          <div
+            *ngIf="this.loginForm.controls?.['password']?.touched && this.loginForm.controls?.['password']?.invalid"
+          >
+            <div
+              *ngIf="this.loginForm.controls?.['password']?.errors?.['required']"
+              style="color: red"
+            >
+              please fill the password
+            </div>
+            <div
+              *ngIf="this.loginForm.controls?.['password']?.errors?.['pattern']"
+              style="color: red"
+            >
+              please enter the valid password
+            </div>
+          </div>
+        </div>
+        <mat-card-actions
+          ><br />
+          <button mat-raised-button color="primary" (click)="login()" id="user" [disabled]="!loginForm.valid">
+            Login
+          </button>
+          <button mat-raised-button color="accent" routerLink="/signup" >
+            SignUp
+          </button>
+        </mat-card-actions>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<router-outlet></router-outlet>

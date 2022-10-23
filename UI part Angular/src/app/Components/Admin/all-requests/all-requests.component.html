@@ -1,0 +1,112 @@
+<div class="container">
+  <img src="" alt="" />
+  <mat-card
+    class="example-card mat-elevation-z10"
+    *ngFor="let item of allRequest"
+  >
+    <mat-card-header style="margin-left: -5px">
+      <mat-card-title>Ticket Id : {{ item.reqId }}</mat-card-title>
+
+      <div *ngIf="item.approved == true; else elseBlock">
+        <button
+          mat-raised-button
+          style="
+            right: 0;
+            margin-top: -5px;
+            position: absolute;
+            background-color: rgb(22, 242, 11);
+          "
+        >
+          approved
+        </button>
+      </div>
+      <ng-template #elseBlock
+        ><button
+          mat-raised-button
+          style="
+            right: 0;
+            margin-top: -5px;
+            position: absolute;
+            background-color: rgb(242, 242, 11);
+          "
+        >
+          pending
+        </button></ng-template
+      >
+      <mat-card-title
+        >name : {{ item.first_name + " " + item.last_name }}</mat-card-title
+      >
+    </mat-card-header>
+    <hr />
+
+    <mat-card-header>
+      <mat-card-title>purpose : {{ item.purpose }}</mat-card-title>
+
+      <mat-card-title>description : {{ item.description }}</mat-card-title>
+
+      <mat-card-title>estimateCost : {{ item.estimatedAmount }}</mat-card-title>
+
+      <mat-card-title>advanceAmount : {{ item.advAmount }}</mat-card-title>
+      <mat-card-title>date : {{ item.date | date }}</mat-card-title>
+    </mat-card-header>
+    <hr />
+    <mat-card-header>
+      <mat-card-title>Approver : {{ item.approver }}</mat-card-title>
+    </mat-card-header>
+    <hr />
+    <mat-card-actions class="buttons">
+      <span
+        *ngIf="
+          this.item.estimatedAmount > 200000 && item.statusName != 'forwarded'
+        "
+      >
+        <mat-icon
+          mat-raised-button
+          color="primary"
+          style="margin-left: 35%"
+          matTooltip="forward"
+          (click)="forward(item.reqId)"
+        >
+          <span class="material-symbols-outlined"> forward </span>
+        </mat-icon>
+      </span>
+
+      <span
+        *ngIf="
+          this.item.estimatedAmount <= 200000 || managerId == 2;
+          else elseB
+        "
+      >
+        <mat-icon
+          mat-raised-button
+          color="primary"
+          style="margin-left: 10%"
+          matTooltip="approve"
+          (click)="approved(item.reqId)"
+        >
+          <span class="material-symbols-outlined"> done </span>
+        </mat-icon>
+      </span>
+
+      <span *ngIf="this.item.estimatedAmount <= 200000 || managerId == 2">
+        <mat-icon
+          mat-raised-button
+          color="warn"
+          style="margin-left: 25%"
+          (click)="openRejectDialog()"
+          matTooltip="reject"
+          (click)="rejected(item.reqId)"
+        >
+          <span class="material-symbols-outlined"> delete_forever </span>
+        </mat-icon>
+      </span>
+      <ng-template #elseB
+        ><button
+          mat-raised-button
+          color="primary"
+          style="margin-left: 10%"
+        ></button
+      ></ng-template>
+    </mat-card-actions>
+  </mat-card>
+</div>

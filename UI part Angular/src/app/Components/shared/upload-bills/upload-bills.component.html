@@ -1,0 +1,103 @@
+<div class="outerdivs">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title style="text-align: center"
+        >Request Details
+      </mat-card-title>
+    </mat-card-header>
+    <hr />
+    <mat-card-content>
+      <div *ngFor="let i of userDetails">
+        <mat-card-title>id : {{ i.reqId }} </mat-card-title>
+        <mat-card-title>name : {{ i.name }} </mat-card-title>
+        <mat-card-title>description : {{ i.description }} </mat-card-title>
+        <mat-card-title
+          >estimated amount : {{ i.estimatedAmount }}
+        </mat-card-title>
+        <mat-card-title>advance amount : {{ i.advAmount }} </mat-card-title>
+        <mat-card-title
+          >plan date : {{ i.date | date: "M/d/yy" }}
+        </mat-card-title>
+        <mat-card-title>status: {{ i.statusName }}</mat-card-title>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <mat-card-title
+        ><button
+          mat-raised-button
+          style="margin-left: 90px; background-color: rgb(22, 242, 11)"
+        >
+          {{ status }}
+        </button></mat-card-title
+      >
+    </mat-card-actions> </mat-card
+  >&nbsp;&nbsp;
+  <mat-card class="example-card">
+    <h2>Upload Details</h2>
+
+    <hr />
+    <form [formGroup]="uploadForm">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <!-- Div for purpose  field -->
+            <mat-form-field class="example-full-width" appearance="standard">
+              <mat-label>reqId</mat-label>
+              <input matInput formControlName="ReqId" />
+            </mat-form-field>
+            <div
+              *ngIf="
+                this.uploadForm.get('ReqId')?.touched &&
+                this.uploadForm.get('ReqId')?.invalid
+              "
+              class="help-block"
+            >
+              <span class="text-danger"> please fill the purpose</span>
+            </div>
+          </td>
+
+          <!-- Div for description  field -->
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width" appearance="standard">
+              <mat-label>comments</mat-label>
+              <input matInput formControlName="Comments" />
+            </mat-form-field>
+            <div
+              *ngIf="
+                this.uploadForm.get('Comments')?.touched &&
+                this.uploadForm.get('Comments')?.invalid
+              "
+              class="help-block"
+            >
+              <span class="text-danger"> please fill the description</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width" appearance="standard">
+              <mat-label>spendAmount</mat-label>
+              <input matInput formControlName="SpendAmount" />
+            </mat-form-field>
+            <div
+              *ngIf="
+                this.uploadForm.get('SpendAmount')?.touched &&
+                this.uploadForm.get('SpendAmount')?.invalid
+              "
+              class="help-block"
+            >
+              <span class="text-danger"> please fill the description</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <input type="file" (change)="onFileChange($event)" /><br /><br />
+      <button mat-raised-button color="primary" (click)="onSubmit()">
+        upload
+      </button>
+    </form>
+  </mat-card>
+</div>

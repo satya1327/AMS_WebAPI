@@ -1,0 +1,141 @@
+.toolbar{
+  position: fixed;
+width:100%;
+position: fixed;
+z-index: 1;
+}
+mat-sidenav-content{
+  height: 100vh;
+  background: transparent;
+  background-image: url('../../../../assets/images/vec.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+mat-sidenav{
+  background-color: rgb(14, 9, 9);
+  width: 300px;
+
+  color: white;
+
+}
+mat-nav-list{
+  margin-top: 15px;
+}
+mat-nav-list>a{
+  color:white;
+  font-weight: 500;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+  h1{
+    text-align: center;
+    padding-top: 15px;
+    color: rgb(73, 67, 67);
+
+
+    font-size: 80px;
+
+  }
+
+
+  a {
+    position:relative;
+    display: inline-block;
+
+    padding: 6px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    width: 30%;
+    text-align: center;
+
+  }
+
+
+
+  html,
+  .example-spacer {
+  flex: 1 1 auto;
+  }
+
+
+  .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+  }
+
+  .material-symbols-sharp {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+  }
+
+  .image{
+
+  background-color: rgb(195, 205, 223);
+
+  }
+  .bootstrap{
+  width: 100vw;
+  height:100vh;
+  }
+
+  img {
+  width: 100vw;
+  height: 60vh;
+  object-fit: contain;
+
+  margin-top: 20px;}
+
+
+  .movement{
+
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+
+  }
+  .bd-example{
+  background-color: rgb(54, 59, 59);
+  }
+
+  .background{
+
+    background-image: url('../../../../assets/images/vec.jpg');
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+
+  }
+
+
+
+  .links a{
+    color: white;
+  }
+
+#avtar{
+  margin-left: 35%;
+  margin-top: 35%;
+}
+.sliderMenu{
+  color: white;
+  margin-left:2%
+}

@@ -1,0 +1,129 @@
+<form [formGroup]="editForm">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <!-- Div for purpose  field -->
+        <mat-form-field class="example-full-width" appearance="standard">
+          <mat-label>purpose</mat-label>
+          <input matInput formControlName="purpose" />
+        </mat-form-field>
+        <div
+          *ngIf="
+            this.editForm.get('purpose')?.touched &&
+            this.editForm.get('purpose')?.invalid
+          "
+          class="help-block"
+        >
+          <span class="error"> please fill the purpose</span>
+        </div>
+      </td>
+
+      <!-- Div for description  field -->
+
+      <td>
+        <mat-form-field class="example-full-width" appearance="standard">
+          <mat-label>description</mat-label>
+          <input matInput formControlName="description" />
+        </mat-form-field>
+        <div
+          *ngIf="
+            this.editForm.get('description')?.touched &&
+            this.editForm.get('description')?.invalid
+          "
+          class="help-block"
+        >
+          <span class="error"> please fill the description</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Div for approver  field -->
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+
+
+      <!-- Div for CreatedDate  field -->
+
+      <td>
+        <mat-form-field appearance="standard" class="example-full-width">
+          <mat-label>Pick a Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="date"
+
+          />
+
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <!-- Div for estimateCost  field -->
+        <mat-form-field class="example-full-width" appearance="standard">
+          <mat-label>estimateCost</mat-label>
+          <input matInput formControlName="estimatedAmount" />
+        </mat-form-field>
+        <div
+          *ngIf="
+            this.editForm.get('estimatedAmount')?.touched &&
+            this.editForm.get('estimatedAmount')?.invalid
+          "
+          class="help-block"
+        >
+          <span class="error"> please fill the purpose</span>
+        </div>
+      </td>
+
+      <!-- Div for description  field -->
+
+      <td>
+        <mat-form-field class="example-full-width" appearance="standard">
+          <mat-label>advanceAmount</mat-label>
+          <input matInput formControlName="advAmount" />
+        </mat-form-field>
+        <div
+          *ngIf="
+            this.editForm.get('advAmount')?.touched &&
+            this.editForm.get('advAmount')?.invalid
+          "
+          class="help-block"
+        >
+          <span class="error"> please fill the description</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    class="example-spacer"
+    color="primary"
+  >
+    <span matTooltip="submit" (click)="onSubmit()"
+      ><mat-icon class="mat-18"> save </mat-icon></span
+    >
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    class="example-spacer"
+    color="warn"
+  >
+    <span matTooltip="cancel" style="margin-left: 3%" [mat-dialog-close]="true"
+      ><mat-icon class="mat-18"> cancel </mat-icon></span
+    >
+  </button>
+</form>

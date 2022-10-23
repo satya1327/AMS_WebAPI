@@ -1,0 +1,23 @@
+<form [formGroup]="RejectForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Comments</mat-label>
+    <textarea matInput formControlName="comments"></textarea></mat-form-field
+  ><br />
+  <mat-icon
+    mat-raised-button
+    color="primary"
+    matTooltip="Save"
+    (click)="submitRejectRequest()"
+  >
+    <span class="material-symbols-outlined"> done </span> </mat-icon
+  >&nbsp;
+
+  <mat-icon
+    mat-raised-button
+    color="accent"
+    (click)="onCancel()"
+    matTooltip="cancel"
+  >
+    cancel
+  </mat-icon>
+</form>
